@@ -15,7 +15,7 @@
     //$input = json_decode(file_get_contents('php://input'), true);
     
     $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
-    $result = $link->query("SELECT * FROM topics");
+    $result = $link->query("SELECT DISTINCT topic FROM faqs");
     $item = $result->fetchAll(PDO::FETCH_COLUMN);
     $output = array('topics'=>$item);
 
