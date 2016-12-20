@@ -79,12 +79,15 @@
    // Authenticate with auth_token
    } else if ($method === 'POST') {
        $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
-       var_dump($checkToken);
+       //var_dump($checkToken);
        $checkToken = hash('sha256', $checkToken);
-       var_dump($checkToken);
+       //var_dump($checkToken);
        $givenToken = $_POST["auth_token"];
-       var_dump($givenToken);
+       //var_dump($givenToken);
+       $errorTypes = array('not authorised','topic undefined');
+       var_dump($errorTypes);
        if ($givenToken !== $checkToken || $givenToken !== "concertina") {
+           echo json_encode(array("error"=>$errorTypes[0]));
        }
       
       
