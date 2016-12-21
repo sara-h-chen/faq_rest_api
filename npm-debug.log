@@ -1,0 +1,150 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/stevens/ug/jrvh15/.nvm/versions/v7.2.1/bin/node',
+1 verbose cli   '/home/stevens/ug/jrvh15/.nvm/versions/v7.2.1/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'axios' ]
+2 info using npm@3.10.10
+3 info using node@v7.2.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData axios
+8 silly fetchNamedPackageData axios
+9 silly mapToRegistry name axios
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'axios',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'axios',
+12 silly mapToRegistry   name: 'axios',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/axios
+14 verbose request uri https://registry.npmjs.org/axios
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 5:31:05 PM
+17 verbose request id 7f5d53261572ee89
+18 http request GET https://registry.npmjs.org/axios
+19 http 200 https://registry.npmjs.org/axios
+20 verbose headers { server: 'nginx/1.10.1',
+20 verbose headers   'content-type': 'application/json',
+20 verbose headers   'last-modified': 'Tue, 20 Dec 2016 08:09:05 GMT',
+20 verbose headers   etag: 'W/"5858e721-140e5"',
+20 verbose headers   'content-encoding': 'gzip',
+20 verbose headers   'cache-control': 'max-age=300',
+20 verbose headers   'content-length': '12277',
+20 verbose headers   'accept-ranges': 'bytes',
+20 verbose headers   date: 'Wed, 21 Dec 2016 17:31:06 GMT',
+20 verbose headers   via: '1.1 varnish',
+20 verbose headers   age: '87',
+20 verbose headers   connection: 'keep-alive',
+20 verbose headers   'x-served-by': 'cache-lcy1145-LCY',
+20 verbose headers   'x-cache': 'HIT',
+20 verbose headers   'x-cache-hits': '1',
+20 verbose headers   'x-timer': 'S1482341466.002588,VS0,VE0',
+20 verbose headers   vary: 'Accept-Encoding' }
+21 silly get cb [ 200,
+21 silly get   { server: 'nginx/1.10.1',
+21 silly get     'content-type': 'application/json',
+21 silly get     'last-modified': 'Tue, 20 Dec 2016 08:09:05 GMT',
+21 silly get     etag: 'W/"5858e721-140e5"',
+21 silly get     'content-encoding': 'gzip',
+21 silly get     'cache-control': 'max-age=300',
+21 silly get     'content-length': '12277',
+21 silly get     'accept-ranges': 'bytes',
+21 silly get     date: 'Wed, 21 Dec 2016 17:31:06 GMT',
+21 silly get     via: '1.1 varnish',
+21 silly get     age: '87',
+21 silly get     connection: 'keep-alive',
+21 silly get     'x-served-by': 'cache-lcy1145-LCY',
+21 silly get     'x-cache': 'HIT',
+21 silly get     'x-cache-hits': '1',
+21 silly get     'x-timer': 'S1482341466.002588,VS0,VE0',
+21 silly get     vary: 'Accept-Encoding' } ]
+22 verbose get saving axios to /home/stevens/ug/jrvh15/.npm/registry.npmjs.org/axios/.cache.json
+23 verbose correctMkdir /home/stevens/ug/jrvh15/.npm correctMkdir not in flight; initializing
+24 silly install normalizeTree
+25 silly loadCurrentTree Finishing
+26 silly loadIdealTree Starting
+27 silly install loadIdealTree
+28 silly cloneCurrentTree Starting
+29 silly install cloneCurrentTreeToIdealTree
+30 silly cloneCurrentTree Finishing
+31 silly loadShrinkwrap Starting
+32 silly install loadShrinkwrap
+33 silly loadShrinkwrap Finishing
+34 silly loadAllDepsIntoIdealTree Starting
+35 silly install loadAllDepsIntoIdealTree
+36 silly resolveWithNewModule axios@0.15.3 checking installable status
+37 silly cache add args [ 'axios', null ]
+38 verbose cache add spec axios
+39 silly cache add parsed spec Result {
+39 silly cache add   raw: 'axios',
+39 silly cache add   scope: null,
+39 silly cache add   escapedName: 'axios',
+39 silly cache add   name: 'axios',
+39 silly cache add   rawSpec: '',
+39 silly cache add   spec: 'latest',
+39 silly cache add   type: 'tag' }
+40 silly addNamed axios@latest
+41 verbose addNamed "latest" is being treated as a dist-tag for axios
+42 info addNameTag [ 'axios', 'latest' ]
+43 silly mapToRegistry name axios
+44 silly mapToRegistry using default registry
+45 silly mapToRegistry registry https://registry.npmjs.org/
+46 silly mapToRegistry data Result {
+46 silly mapToRegistry   raw: 'axios',
+46 silly mapToRegistry   scope: null,
+46 silly mapToRegistry   escapedName: 'axios',
+46 silly mapToRegistry   name: 'axios',
+46 silly mapToRegistry   rawSpec: '',
+46 silly mapToRegistry   spec: 'latest',
+46 silly mapToRegistry   type: 'tag' }
+47 silly mapToRegistry uri https://registry.npmjs.org/axios
+48 verbose addNameTag registry:https://registry.npmjs.org/axios not in flight; fetching
+49 verbose get https://registry.npmjs.org/axios not expired, no request
+50 silly addNameTag next cb for axios with tag latest
+51 silly addNamed axios@0.15.3
+52 verbose addNamed "0.15.3" is a plain semver version for axios
+53 silly mapToRegistry name axios
+54 silly mapToRegistry using default registry
+55 silly mapToRegistry registry https://registry.npmjs.org/
+56 silly mapToRegistry data Result {
+56 silly mapToRegistry   raw: 'axios',
+56 silly mapToRegistry   scope: null,
+56 silly mapToRegistry   escapedName: 'axios',
+56 silly mapToRegistry   name: 'axios',
+56 silly mapToRegistry   rawSpec: '',
+56 silly mapToRegistry   spec: 'latest',
+56 silly mapToRegistry   type: 'tag' }
+57 silly mapToRegistry uri https://registry.npmjs.org/axios
+58 verbose addRemoteTarball https://registry.npmjs.org/axios/-/axios-0.15.3.tgz not in flight; adding
+59 verbose addRemoteTarball [ 'https://registry.npmjs.org/axios/-/axios-0.15.3.tgz',
+59 verbose addRemoteTarball   '2c9d638b2e191a08ea1d6cc988eadd6ba5bdc053' ]
+60 info retry fetch attempt 1 at 5:31:06 PM
+61 info attempt registry request try #1 at 5:31:06 PM
+62 http fetch GET https://registry.npmjs.org/axios/-/axios-0.15.3.tgz
+63 http fetch 200 https://registry.npmjs.org/axios/-/axios-0.15.3.tgz
+64 silly fetchAndShaCheck shasum 2c9d638b2e191a08ea1d6cc988eadd6ba5bdc053
+65 verbose addTmpTarball /tmp/npm-100027-72297227/registry.npmjs.org/axios/-/axios-0.15.3.tgz not in flight; adding
+66 verbose addTmpTarball already have metadata; skipping unpack for axios@0.15.3
+67 verbose correctMkdir /home/stevens/ug/jrvh15/.npm correctMkdir not in flight; initializing
+68 silly rollbackFailedOptional Starting
+69 silly rollbackFailedOptional Finishing
+70 silly runTopLevelLifecycles Finishing
+71 silly install printInstalled
+72 verbose stack Error: Unknown system error -122: Unknown system error -122, write
+73 verbose cwd /home/stevens/ug/jrvh15/public_html/faq2016
+74 error Linux 3.16.0-4-amd64
+75 error argv "/home/stevens/ug/jrvh15/.nvm/versions/v7.2.1/bin/node" "/home/stevens/ug/jrvh15/.nvm/versions/v7.2.1/bin/npm" "install" "axios"
+76 error node v7.2.1
+77 error npm  v3.10.10
+78 error code Unknown system error -122
+79 error errno -122
+80 error syscall write
+81 error Unknown system error -122: Unknown system error -122, write
+82 error If you need help, you may report this error at:
+82 error     <https://github.com/npm/npm/issues>
+83 verbose exit [ -122, true ]

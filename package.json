@@ -1,0 +1,25 @@
+{
+  "name": "faq2016",
+  "version": "1.0.0",
+  "description": "A RESTful app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sara-h-chen/faq_rest_api.git"
+  },
+  "author": "sara-h-chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sara-h-chen/faq_rest_api/issues"
+  },
+  "homepage": "https://github.com/sara-h-chen/faq_rest_api#readme",
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
