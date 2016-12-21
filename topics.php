@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Created by PhpStorm.
@@ -7,6 +6,8 @@
  * Time: 14:31
  */
 
+    ob_start();
+   
     /**
      * gets the HTTP method, path and body of the request
      */
@@ -15,14 +16,17 @@
     // if you are trying to upload a file to the webserver
     //$input = json_decode(file_get_contents('php://input'), true);
     
+    header('Content-Type: application/json');
+
     if ($method === 'GET') {
+
         $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
         $result = $link->query("SELECT DISTINCT topic FROM faqs");
         $item = $result->fetchAll(PDO::FETCH_COLUMN);
         $output = array('topics'=>$item);
 
-        header('Content-Type: application/json');
         echo json_encode($output);
+
     } else if ($method === 'POST') {
         $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
         $checkToken = hash('sha256', $checkToken);
@@ -31,5 +35,5 @@
         //var_dump($errorTypes);
         if ($givenToken !== $checkToken && $givenToken !== "concertina") {
            echo json_encode(array("error"=>$errorTypes[0]));
-        }
+        } 
     }
