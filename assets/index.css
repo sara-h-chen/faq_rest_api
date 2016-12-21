@@ -1,0 +1,59 @@
+﻿
+/* ==============================
+GOOGLE FONT
+=================================*/
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+
+/* ===============================
+GENERAL STYLES
+==================================*/
+
+/*===============================
+TOPICS SECTION STYLES
+=================================*/
+#topics .categories a.active {
+background-color: transparent;
+color: #fff;
+}
+
+.isotope .isotope-item {
+-webkit-transition-duration: 0.8s;
+-moz-transition-duration: 0.8s;
+transition-duration: 0.8s;
+}
+
+#topics .topics-wrapper {
+padding: 10px;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+margin-bottom: 40px;
+background-color: rgba(255, 255, 255, 0.1);
+cursor: pointer;
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+-o-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+border: 1px solid rgb(228, 79, 79);
+}
+
+#topics .topics-wrapper:hover {
+background-color: transparent;
+border: 1px solid rgb(228, 79, 79);
+
+opacity: .80; /* standard: ff gt 1.5, opera, safari */
+-ms-filter: "alpha(opacity=80)"; /* ie 8 */
+filter: alpha(opacity=80); /* ie lt 7 */
+-khtml-opacity: .80; /* safari 1.x */
+-moz-opacity: .80; /* ff lt 1.5, netscape */
+
+}
+
+#work .work-wrapper h4 {
+font-family: 'Fjalla One', sans-serif;
+padding-top: 10px;
+}
+

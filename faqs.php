@@ -88,9 +88,9 @@
        $checkToken = hash('sha256', $checkToken);
        //var_dump($checkToken);
        $givenToken = $_POST["auth_token"];
-       var_dump($givenToken);
+       //var_dump($givenToken);
        $errorTypes = array('not authorised','topic undefined');
-       var_dump($errorTypes);
+       //var_dump($errorTypes);
        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
            echo json_encode(array("error"=>$errorTypes[0]));
        }
@@ -100,7 +100,7 @@
        // Get the list of topics
        $result = $link->query("SELECT DISTINCT topic FROM faqs");
        $list = $result->fetchAll(PDO::FETCH_COLUMN);
-       var_dump($list);
+       //var_dump($list);
        $topic = $_POST["topic"];
        if ($topic >= sizeof($list)) {
            echo json_encode(array("error"=>$errorTypes[1]));
