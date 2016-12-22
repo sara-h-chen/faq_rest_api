@@ -5,74 +5,160 @@ GOOGLE FONT
 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
 @import url(http://fonts.googleapis.com/css?family=Oswald);
-
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700');
 
 /* ===============================
 GENERAL STYLES
 ==================================*/
 html, body {
+    background-color: #000000;
     height: 100%;
     width:100%;
     margin: 0;
     overflow: hidden;
+    font-size: 100%;
+    font-family: 'Ubuntu', sans-serif;
 }
+
+section {
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.pad-bottom {
+    padding-bottom: 60px;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    padding-bottom: 40px;
+    text-transform: uppercase;
+    color: whitesmoke;
+}
+
+.header hr {
+    width: 50px;
+    border-top: 2px solid rgb(228, 79, 79);
+}
+
+
+/* =============================================================
+CUSTOM BUTTON STYLES
+============================================================ */
+.button-custom {
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    margin: 25px 5px 5px 0px;
+    margin: 5px;
+}
+
+.btn-custom-one {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid rgb(228, 79, 79);
+}
+
+.btn-custom-one:hover {
+    background-color: rgb(228, 79, 79);
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn-custom-two {
+    color: #fff;
+    background-color: rgb(228, 79, 79);
+    border: 2px solid rgb(228, 79, 79);
+}
+
+.btn-custom-two:hover {
+    border: 2px solid rgb(228, 79, 79);
+    text-decoration: none;
+    color: #fff;
+    background-color: transparent;
+}
+
+/* =============================================================
+HEADER SECTION STYLES
+============================================================ */
+
+#header {
+    text-align: center;
+    padding-top: 75px;
+    padding-bottom: 40px;
+    z-index: 10;
+}
+
+#header .social {
+    display: block;
+    margin: 50px 20px;
+}
+/*===============================
+TOPICS SECTION STYLES
+=================================*/
+
+#topics .categories a.active {
+    background-color: transparent;
+    color: #fff;
+}
+
+.isotope .isotope-item {
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+
+#topics .topic-wrapper {
+    padding: 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    border: 1px solid rgb(228, 79, 79);
+}
+
+#topics .topic-wrapper:hover {
+    background-color: transparent;
+    border: 1px solid rgb(228, 79, 79);
+
+    opacity: .80; /* standard: ff gt 1.5, opera, safari */
+    -ms-filter: "alpha(opacity=80)"; /* ie 8 */
+    filter: alpha(opacity=80); /* ie lt 7 */
+    -khtml-opacity: .80; /* safari 1.x */
+    -moz-opacity: .80; /* ff lt 1.5, netscape */
+
+}
+
+#topics .topic-wrapper h4 {
+    font-family: 'Fjalla One', sans-serif;
+    padding-top: 10px;
+}
+
+/*===========================================
+BACKGROUND STYLING
+ ============================================*/
 
 div #wavybg-wrapper {
     height: 100vh;
     width: auto;
     overflow: hidden;
+    margin: 0;
+    position: absolute;
+    z-index: -10;
 }
 
 canvas {
     height: 100%;
     width: 100%;
-    margin: auto;
     overflow: hidden;
 }
-
-/*===============================
-TOPICS SECTION STYLES
-=================================*/
-/*#topics .categories a.active {*/
-/*background-color: transparent;*/
-/*color: #fff;*/
-/*}*/
-
-/*.isotope .isotope-item {*/
-/*-webkit-transition-duration: 0.8s;*/
-/*-moz-transition-duration: 0.8s;*/
-/*transition-duration: 0.8s;*/
-/*}*/
-
-/*#topics .topics-wrapper {*/
-/*padding: 10px;*/
-/*border-radius: 5px;*/
-/*-moz-border-radius: 5px;*/
-/*-webkit-border-radius: 5px;*/
-/*margin-bottom: 40px;*/
-/*background-color: rgba(255, 255, 255, 0.1);*/
-/*cursor: pointer;*/
-/*-webkit-transition: all 0.5s ease-in-out;*/
-/*-moz-transition: all 0.5s ease-in-out;*/
-/*-o-transition: all 0.5s ease-in-out;*/
-/*transition: all 0.5s ease-in-out;*/
-/*border: 1px solid rgb(228, 79, 79);*/
-/*}*/
-
-/*#topics .topics-wrapper:hover {*/
-/*background-color: transparent;*/
-/*border: 1px solid rgb(228, 79, 79);*/
-
-/*opacity: .80; !* standard: ff gt 1.5, opera, safari *!*/
-/*-ms-filter: "alpha(opacity=80)"; !* ie 8 *!*/
-/*filter: alpha(opacity=80); !* ie lt 7 *!*/
-/*-khtml-opacity: .80; !* safari 1.x *!*/
-/*-moz-opacity: .80; !* ff lt 1.5, netscape *!*/
-
-/*}*/
-
-/*#work .work-wrapper h4 {*/
-/*font-family: 'Fjalla One', sans-serif;*/
-/*padding-top: 10px;*/
-/*}*/
-

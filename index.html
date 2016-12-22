@@ -15,9 +15,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
 <script src="assets/waterpipe.js"></script>
+<script src="assets/custom.js"></script>
 <script src="assets/consume.js"></script>
 
 <!-- BOOTSTRAP CORE CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
 <!-- FANCYBOX POPUP STYLES -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" rel="stylesheet" />
@@ -33,30 +35,72 @@
 <![endif]-->
 
 </head>
-
-<body>
-<div id="wavybg-wrapper">
-    <canvas>Your browser does not support HTML5 canvas.</canvas>
-
+<!-- HEADER SECTION BEGIN -->
+<div id="header">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+            <div>
+                <h1>LIST OF TOPICS</h1>
+            </div>
+        </div>
+    </div>
 </div>
-<script>
-    var smokyBG = $('#wavybg-wrapper').waterpipe({
-        //Default values
-        gradientStart: '#000000',
-        gradientEnd: '#222222',
-        smokeOpacity: 0.1,
-        numCircles: 1,
-        maxMaxRad: 'auto',
-        minMaxRad: 'auto',
-        minRadFactor: 0,
-        iterations: 8,
-        drawsPerFrame: 10,
-        lineWidth: 2,
-        speed: 1,
-        bgColorInner: "#ffffff",
-        bgColorOuter: "#666666"
-    });
-</script>
+<!-- END OF SECTION -->
+<!-- TOPICS SECTION BEGIN -->
+<div class="container">
+    <div class="row text-center animate-in" data-anim-type="fade-in-up" >
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-bottom">
+            <div class="categories" id="listOfTopics">
+                <a href="#" data-filter="*" class="active btn btn-custom btn-custom-two btn-sm" id="all_topics">All</a>
+                <!-- GENERATE LIST HERE -->
+                <!-- GET AS ARRAY THEN PARSE FROM THERE -->
+                <!-- MAKE CALL TO THE FAQS.PHP RESTFUL SERVICE -->
+            </div>
+        </div>
+        <!-- GENERATE FAQS HERE -->
+        <!-- <div class="row text-center animate-in" data-anim-type="fade-in-up" id="work-div">
+         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 INSERT_CATEGORY HERE">
+         <div class="work-wrapper">
+         <h3> QUESTION HERE </h3>
+         </div>
+         </div>-->
+        </div>
+</div>
+<!-- END OF SECTION -->
+
+<!--<body>-->
+<!--<h1 class="animated fadeInUp">List of Topics</h1>-->
+<!--<div id="topicList" class="span12"><script>-->
+<!--//    function disappear() {-->
+<!--//        $("div.topic").click(function() {-->
+<!--//            $(this).siblings("div.topic").fadeToggle(1000);-->
+<!--//        });-->
+<!--//    }-->
+<!--</script></div>-->
+<!--</div>-->
+
+<!--<div id="wavybg-wrapper">-->
+    <!--<canvas>Your browser does not support HTML5 canvas.</canvas>-->
+
+<!--</div>-->
+<!--<script>-->
+    <!--var smokyBG = $('#wavybg-wrapper').waterpipe({-->
+        <!--//Default values-->
+        <!--gradientStart: '#DE0000',-->
+        <!--gradientEnd: '#DE6F00',-->
+        <!--smokeOpacity: 0.1,-->
+        <!--numCircles: 1,-->
+        <!--maxMaxRad: 'auto',-->
+        <!--minMaxRad: 'auto',-->
+        <!--minRadFactor: 0,-->
+        <!--iterations: 8,-->
+        <!--drawsPerFrame: 10,-->
+        <!--lineWidth: 2,-->
+        <!--speed: 1,-->
+        <!--bgColorInner: "#000000",-->
+        <!--bgColorOuter: "#000000"-->
+    <!--});-->
+<!--</script>-->
 
 <!-- BOOTSTRAP SCRIPTS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
