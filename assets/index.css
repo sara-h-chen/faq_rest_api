@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 /* ==============================
 GOOGLE FONT
 =================================*/
@@ -11,11 +11,11 @@ GOOGLE FONT
 GENERAL STYLES
 ==================================*/
 html, body {
-    background-color: #000000;
+    background-color: black;
     height: 100%;
     width:100%;
     margin: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
     font-size: 100%;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -41,6 +41,14 @@ h1 {
     border-top: 2px solid rgb(228, 79, 79);
 }
 
+h4 {
+    color: lightskyblue;
+}
+
+h5 {
+    color: lightblue;
+}
+
 
 /* =============================================================
 CUSTOM BUTTON STYLES
@@ -60,23 +68,23 @@ CUSTOM BUTTON STYLES
 .btn-custom-one {
     background-color: transparent;
     color: #fff;
-    border: 2px solid rgb(228, 79, 79);
+    border: 2px solid rgb(13, 107, 228);
 }
 
 .btn-custom-one:hover {
-    background-color: rgb(228, 79, 79);
+    background-color: rgb(13, 107, 228);
     text-decoration: none;
     color: #fff;
 }
 
 .btn-custom-two {
     color: #fff;
-    background-color: rgb(228, 79, 79);
-    border: 2px solid rgb(228, 79, 79);
+    background-color: rgb(13, 107, 228);
+    border: 2px solid rgb(13, 107, 228);
 }
 
 .btn-custom-two:hover {
-    border: 2px solid rgb(228, 79, 79);
+    border: 2px solid rgb(13, 107, 228);
     text-decoration: none;
     color: #fff;
     background-color: transparent;
@@ -88,20 +96,17 @@ HEADER SECTION STYLES
 
 #header {
     text-align: center;
-    padding-top: 75px;
-    padding-bottom: 40px;
+    padding-top: 50px;
+    padding-bottom: 20px;
     z-index: 10;
+    background: transparent;
 }
 
-#header .social {
-    display: block;
-    margin: 50px 20px;
-}
 /*===============================
 TOPICS SECTION STYLES
 =================================*/
 
-#topics .categories a.active {
+#topics-div .categories a.active {
     background-color: transparent;
     color: #fff;
 }
@@ -112,24 +117,24 @@ TOPICS SECTION STYLES
     transition-duration: 0.8s;
 }
 
-#topics .topic-wrapper {
+#topics-div .topic-wrapper {
     padding: 10px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     margin-bottom: 40px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: transparent;
     cursor: pointer;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-    border: 1px solid rgb(228, 79, 79);
+    /*border: 1px solid rgb(0, 12, 228);*/
 }
 
-#topics .topic-wrapper:hover {
-    background-color: transparent;
-    border: 1px solid rgb(228, 79, 79);
+#topics-div .topic-wrapper:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /*border: 1px solid rgb(0, 12, 228);*/
 
     opacity: .80; /* standard: ff gt 1.5, opera, safari */
     -ms-filter: "alpha(opacity=80)"; /* ie 8 */
@@ -139,10 +144,6 @@ TOPICS SECTION STYLES
 
 }
 
-#topics .topic-wrapper h4 {
-    font-family: 'Fjalla One', sans-serif;
-    padding-top: 10px;
-}
 
 /*===========================================
 BACKGROUND STYLING
@@ -152,13 +153,16 @@ div #wavybg-wrapper {
     height: 100vh;
     width: auto;
     overflow: hidden;
-    margin: 0;
-    position: absolute;
+    position: relative;
     z-index: -10;
+    margin-top: -20%;
 }
 
 canvas {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    z-index: -5;
+    position: relative;
+    margin-top: -20%;
 }

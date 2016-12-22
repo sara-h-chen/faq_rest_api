@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     /*====================================
@@ -32,8 +31,8 @@ $(document).ready(function () {
     /*====================================
      FILTER FUNCTIONALITY SCRIPTS
      ======================================*/
-    $(window).load(function () {
-        var $container = $('#work-div');
+    $(window).on('load', function () {
+        var $container = $('#topics-div');
         $container.isotope({
             filter: '*',
             animationOptions: {
@@ -42,8 +41,9 @@ $(document).ready(function () {
                 queue: false
             }
         });
-        $('.caegories a').click(function () {
-            $('.caegories .active').removeClass('active');
+
+        $('.categories a').click(function () {
+            $('.categories .active').removeClass('active');
             $(this).addClass('active');
             var selector = $(this).attr('data-filter');
             $container.isotope({
@@ -64,11 +64,6 @@ $(document).ready(function () {
     /*====================================
      CUSTOM SCRIPTS
      ======================================*/
-
-
-
-
-
 
 
 });

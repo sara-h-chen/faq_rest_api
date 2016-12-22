@@ -35,12 +35,13 @@
 <![endif]-->
 
 </head>
+<body>
 <!-- HEADER SECTION BEGIN -->
 <div id="header">
     <div class="container">
         <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
             <div>
-                <h1>LIST OF TOPICS</h1>
+                <h1 class="animated fadeInUp">LIST OF TOPICS</h1>
             </div>
         </div>
     </div>
@@ -52,55 +53,42 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-bottom">
             <div class="categories" id="listOfTopics">
                 <a href="#" data-filter="*" class="active btn btn-custom btn-custom-two btn-sm" id="all_topics">All</a>
-                <!-- GENERATE LIST HERE -->
-                <!-- GET AS ARRAY THEN PARSE FROM THERE -->
-                <!-- MAKE CALL TO THE FAQS.PHP RESTFUL SERVICE -->
+                <!-- LIST GENERATED IN A SIMILAR FORMAT TO ABOVE -->
             </div>
         </div>
         <!-- GENERATE FAQS HERE -->
-        <!-- <div class="row text-center animate-in" data-anim-type="fade-in-up" id="work-div">
-         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 INSERT_CATEGORY HERE">
-         <div class="work-wrapper">
-         <h3> QUESTION HERE </h3>
-         </div>
-         </div>-->
+        <div class="row text-center animate-in" data-anim-type="fade-in-up" id="topics-div">
+         <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 INSERT_CATEGORY HERE">-->
+         <!--<div class="topic-wrapper">-->
+         <!--<h3> QUESTION HERE </h3>-->
+         <!--</div>-->
+         <!--</div>-->
         </div>
+    </div>
 </div>
 <!-- END OF SECTION -->
+<div id="wavybg-wrapper">
+    <canvas>Your browser does not support HTML5 canvas.</canvas>
 
-<!--<body>-->
-<!--<h1 class="animated fadeInUp">List of Topics</h1>-->
-<!--<div id="topicList" class="span12"><script>-->
-<!--//    function disappear() {-->
-<!--//        $("div.topic").click(function() {-->
-<!--//            $(this).siblings("div.topic").fadeToggle(1000);-->
-<!--//        });-->
-<!--//    }-->
-<!--</script></div>-->
-<!--</div>-->
-
-<!--<div id="wavybg-wrapper">-->
-    <!--<canvas>Your browser does not support HTML5 canvas.</canvas>-->
-
-<!--</div>-->
-<!--<script>-->
-    <!--var smokyBG = $('#wavybg-wrapper').waterpipe({-->
-        <!--//Default values-->
-        <!--gradientStart: '#DE0000',-->
-        <!--gradientEnd: '#DE6F00',-->
-        <!--smokeOpacity: 0.1,-->
-        <!--numCircles: 1,-->
-        <!--maxMaxRad: 'auto',-->
-        <!--minMaxRad: 'auto',-->
-        <!--minRadFactor: 0,-->
-        <!--iterations: 8,-->
-        <!--drawsPerFrame: 10,-->
-        <!--lineWidth: 2,-->
-        <!--speed: 1,-->
-        <!--bgColorInner: "#000000",-->
-        <!--bgColorOuter: "#000000"-->
-    <!--});-->
-<!--</script>-->
+</div>
+<script>
+    var smokyBG = $('#wavybg-wrapper').waterpipe({
+        //Default values
+        gradientStart: '#DE0000',
+        gradientEnd: '#DE6F00',
+        smokeOpacity: 0.1,
+        numCircles: 1,
+        maxMaxRad: 'auto',
+        minMaxRad: 'auto',
+        minRadFactor: 0,
+        iterations: 8,
+        drawsPerFrame: 10,
+        lineWidth: 2,
+        speed: 1,
+        bgColorInner: "#000000",
+        bgColorOuter: "#000000"
+    });
+</script>
 
 <!-- BOOTSTRAP SCRIPTS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
