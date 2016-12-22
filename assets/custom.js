@@ -1,17 +1,5 @@
 $(document).ready(function() {
 
-/*===============================
-BACKGROUND 3D STYLE
-=================================*/
-
-$(".bg").interactive_bg({
-    strength: 25,
-    scale: 1.00,
-    animationSpeed: "120ms",
-    contain: true,
-    wrapContent: false
-});
-
 /*====================================
 FILTER FUNCTIONALITY SCRIPTS
 ======================================*/
