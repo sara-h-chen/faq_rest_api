@@ -16,6 +16,7 @@
     // Uncomment if you want to upload a file to the webserver
     //$input = json_decode(file_get_contents('php://input'), true);
 
+    header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
 
     // Deal with GET requests

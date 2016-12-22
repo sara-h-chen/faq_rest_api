@@ -15,7 +15,8 @@
     $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
     // if you are trying to upload a file to the webserver
     //$input = json_decode(file_get_contents('php://input'), true);
-    
+
+    header('Access-Control-Allow-Origin: *');    
     header('Content-Type: application/json');
 
     if ($method === 'GET') {
