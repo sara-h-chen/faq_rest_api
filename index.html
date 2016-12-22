@@ -14,6 +14,7 @@
 <!-- CORE JQUERY -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
+<script src="assets/waterpipe.js"></script>
 <script src="assets/consume.js"></script>
 
 <!-- BOOTSTRAP CORE CSS -->
@@ -34,16 +35,27 @@
 </head>
 
 <body>
-<!--
-  <div class="row">
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <img src="..." alt="...">
-    </a>
-  </div>
-  ...
+<div id="wavybg-wrapper">
+    <canvas>Your browser does not support HTML5 canvas.</canvas>
 </div>
--->
+<script>
+    var smokyBG = $('#wavybg-wrapper').waterpipe({
+        //Default values
+        gradientStart: '#000000',
+        gradientEnd: '#222222',
+        smokeOpacity: 0.1,
+        numCircles: 1,
+        maxMaxRad: 'auto',
+        minMaxRad: 'auto',
+        minRadFactor: 0,
+        iterations: 8,
+        drawsPerFrame: 10,
+        lineWidth: 2,
+        speed: 1,
+        bgColorInner: "#ffffff",
+        bgColorOuter: "#666666"
+    });
+</script>
 
 <!-- BOOTSTRAP SCRIPTS -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

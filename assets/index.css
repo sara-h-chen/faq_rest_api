@@ -10,206 +10,21 @@ GOOGLE FONT
 /* ===============================
 GENERAL STYLES
 ==================================*/
-div .vcenter {
-    margin-top: 25%;
-    float: none;
-    display:inline-block;
-    vertical-align:middle;
+body {
+    height: 100%;
 }
-    html {
-      height: 100%;
-    }
 
-    body {
-      padding: 0;
-      text-align: center;
-      font-family: 'open sans';
-      position: relative;
-      margin: 0;
-      height: 100%;
-      background-color: black;
-      align-items: center;
-    }
-    
-    .wrapper {
-    	height: auto !important;
-    	height: 100%;
-    	margin: 0 auto; 
-    	overflow: hidden;
-    }
-    
-    a {
-      text-decoration: none;
-    }
-    
-    h1, h2 {
-      width: 100%;
-      float: left;
-    }
-    h1 {
-      margin-top: 100px;
-      color: #fff;
-      margin-bottom: 5px;
-      font-size: 70px;
-      font-weight: 100;
-    }
+div #wavybg-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+}
 
-    h2 {
-      padding: 00px 20px 30px 20px;
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      letter-spacing: 0px;
-      color: #ddd;
-      font-size: 20px;
-      line-height: 160%;
-      font-weight: 100;
-      margin-top: 10px;
-      margin-bottom: 0;
-    }
-    
-    .pointer {
-      color: #00B0FF;
-      font-family: 'Pacifico';
-      font-size: 24px;
-      margin-top: 15px;
-      position: absolute;
-      top: 130px;
-      right: -40px;
-    }
-    .pointer2 {
-      color: #00B0FF;
-      font-family: 'Pacifico';
-      font-size: 24px;
-      margin-top: 15px;
-      position: absolute;
-      top: 130px;
-      left: -40px;
-    }
-
-    pre {
-      margin: 80px auto;
-    }
-
-    pre code {
-      padding: 35px;
-      border-radius: 5px;
-      font-size: 15px;
-      background: rgba(0,0,0,0.1);
-      border: rgba(0,0,0,0.05) 5px solid;
-      max-width: 500px;
-    }
-
-    .main {
-      float: left;
-      width: 100%;
-      margin: 0 auto;
-    }
-   
-    .main h1 {
-      padding:20px 50px 10px;
-      float: left;
-      width: 100%;
-      font-size: 60px;
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      font-weight: 100;
-      margin: 0;
-      padding-top: 55px;
-      font-family: 'Open Sans';
-      letter-spacing: -1px;
-      text-transform: capitalize;
-    }
-   
-    .btn {
-      width: 200px;
-      -webkit-box-shadow: none;
-      box-shadow: none;
-      background-color: #4D90FE;
-      background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
-      background-image: -moz-linear-gradient(top,#4D90FE,#4787ED);
-      background-image: linear-gradient(top,#4d90fe,#4787ed);
-      border: 1px solid #3079ED;
-      color: #FFF;
-    }
-
-    .clear {
-      width: auto;
-    }
-
-    .btn:hover, .btn:hover {
-      background: #317af2;
-    }
-
-    .btns {
-      float: left;
-      width: 100%;
-      margin: 50px auto;
-    }
-    
-    .back {
-      position: absolute;
-      top: 0;
-      left: 0;
-      text-align: center;
-      display: block;
-      padding: 7px;
-      width: 100%;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      background:rgba(255, 255, 255, 0.09);
-      font-weight: bold;
-      font-size: 13px;
-      color: #bbb;
-      -webkit-transition: all 200ms ease-out;
-      -moz-transition: all 200ms ease-out;
-      -o-transition: all 200ms ease-out;
-      transition: all 200ms ease-out;
-      color: #fff;
-    }
-    .back:hover {
-      background: #fff;
-      color: #000;
-    }
-    
-    .page-container {
-      float: left;
-      width: 100%;
-      margin: 0 auto 300px;
-      position: relative;
-    }
-    
-    .header {
-      overflow: hidden;
-      clear: both;
-    }
-    
-    .bg {
-      position: absolute;
-      min-height: 100% !important;
-      width: 100%;
-      z-index: 0;
-    }
-    
-    .ibg-bg {
-      position: absolute;
-    }
-
-    #btns {
-      width:250px;
-      text-align: center;
-      margin: 0 auto;
-      height: 50px;
-      overflow: hidden;
-      float: none;
-    }
-    
-    .main {
-      position: relative;
-    }
-
+canvas {
+    height: 100%;
+    width: 100%;
+}
 
 /*===============================
 TOPICS SECTION STYLES
