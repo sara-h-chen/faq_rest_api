@@ -10,20 +10,24 @@ GOOGLE FONT
 /* ===============================
 GENERAL STYLES
 ==================================*/
-body {
+html, body {
     height: 100%;
+    width:100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 div #wavybg-wrapper {
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    height: 100vh;
+    width: auto;
     overflow: hidden;
 }
 
 canvas {
     height: 100%;
     width: 100%;
+    margin: auto;
+    overflow: hidden;
 }
 
 /*===============================
