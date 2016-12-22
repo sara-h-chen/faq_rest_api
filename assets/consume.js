@@ -7,7 +7,7 @@ $(document).ready(function() {
         var topics = [];
        //console.log(data.faqs);
        //console.log(content);
-       for (var i=0; i <= data.faqs.length; i++) {
+       for (var i=0; i < data.faqs.length; i++) {
 
            /** FETCH FAQ SECTION **/
            //console.log(content[i].question);
