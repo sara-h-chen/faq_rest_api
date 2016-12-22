@@ -1,5 +1,4 @@
-﻿﻿
-/* ==============================
+﻿/* ==============================
 GOOGLE FONT
 =================================*/
 
@@ -49,6 +48,9 @@ h5 {
     color: lightblue;
 }
 
+.container {
+    z-index: -100;
+}
 
 /* =============================================================
 CUSTOM BUTTON STYLES
@@ -98,7 +100,6 @@ HEADER SECTION STYLES
     text-align: center;
     padding-top: 50px;
     padding-bottom: 20px;
-    z-index: 10;
     background: transparent;
 }
 
@@ -153,16 +154,12 @@ div #wavybg-wrapper {
     height: 100vh;
     width: auto;
     overflow: hidden;
-    position: relative;
-    z-index: -10;
-    margin-top: -20%;
+    position: absolute;
+    margin-top: 0;
 }
 
 canvas {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    z-index: -5;
-    position: relative;
-    margin-top: -20%;
 }
