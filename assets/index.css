@@ -151,11 +151,12 @@ BACKGROUND STYLING
  ============================================*/
 
 div #wavybg-wrapper {
-    height: 100vh;
-    width: auto;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     position: absolute;
-    margin-top: 0;
+    top: 0px;
+    z-index: 1;
 }
 
 canvas {

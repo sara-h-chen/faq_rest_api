@@ -12,7 +12,8 @@ $(document).ready(function() {
            /** FETCH FAQ SECTION **/
            //console.log(content[i].question);
            var box = document.createElement('div');
-           box.innerHTML = '<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ' + content[i].topic.toLowerCase() + '"><div class="topic-wrapper"><h4> ' + content[i].question + '</h4><h5>'+ content[i].answer + '</h5></div></div>';
+           box.className += content[i].topic.toLowerCase();
+           box.innerHTML = '<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"><div class="topic-wrapper"><h4> ' + content[i].question + '</h4><h5>'+ content[i].answer + '</h5></div></div>';
            //console.log(box.innerHTML);
            document.getElementById("topics-div").appendChild(box);
 
@@ -30,31 +31,31 @@ $(document).ready(function() {
        }
 
 
-    // }).then(function() {
-    //     var $container = $('#topics-div');
-    //     $container.isotope({
-    //         filter: '*',
-    //         animationOptions: {
-    //             duration: 750,
-    //             easing: 'linear',
-    //             queue: false
-    //         }
-    //     });
-    //
-    //     $('.categories a').click(function () {
-    //         $('.categories .active').removeClass('active');
-    //         $(this).addClass('active');
-    //         var selector = $(this).attr('data-filter');
-    //         $container.isotope({
-    //             filter: selector,
-    //             animationOptions: {
-    //                 duration: 750,
-    //                 easing: 'linear',
-    //                 queue: false
-    //             }
-    //         });
-    //         return false;
-    //     });
+    }).then(function() {
+        var $container = $('#topics-div');
+        $container.isotope({
+            filter: '*',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+
+        $('.categories a').click(function () {
+            $('.categories .active').removeClass('active');
+            $(this).addClass('active');
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                filter: selector,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
+            return false;
+        });
     });
 
 });
