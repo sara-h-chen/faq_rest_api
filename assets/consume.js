@@ -58,6 +58,12 @@ $(document).ready(function() {
                 }
             });
             $container.css({top: 100})
+            if ($("#all_topics").hasClass('active')) {
+                $("#hidden-button").hide(300);
+            } else if (!$("#hidden-button").is(":visible")) {
+                console.log("I should appear now!");
+                $("#hidden-button").show(300);
+            }
             return false;
         });
     });

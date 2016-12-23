@@ -50,11 +50,24 @@ h5 {
 
 .container {
     z-index: -100;
+    margin: 0 auto;
+    width: 100%;
 }
+
+.row .text-center {
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+}
+
 
 /* =============================================================
 CUSTOM BUTTON STYLES
 ============================================================ */
+.btn {
+    margin-right: 10px;
+}
+
 .button-custom {
     border-radius: 0px;
     -webkit-border-radius: 0px;
@@ -63,8 +76,7 @@ CUSTOM BUTTON STYLES
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-    margin: 25px 5px 5px 0px;
-    margin: 5px;
+    margin: 25px 25px 25px 25px;
 }
 
 .btn-custom-one {
@@ -90,6 +102,19 @@ CUSTOM BUTTON STYLES
     text-decoration: none;
     color: #fff;
     background-color: transparent;
+}
+
+.btn .active, .btn:active {
+    color: skyblue;
+}
+
+#hidden-button {
+    margin: 0 auto;
+    width: 100%;
+    position: fixed;
+    bottom: 10%;
+    opacity: 1;
+    z-index: 100;
 }
 
 /* =============================================================
@@ -163,4 +188,22 @@ canvas {
     height: 100%;
     width: 100%;
     overflow: hidden;
+}
+
+
+/*===========================================
+POPUP STYLING
+ ============================================*/
+textarea {
+    height: 175px;
+    padding: 10px;
+    width: 90%;
+    text-align: justify;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.remodal-confirm {
+    margin: 15px;
 }
