@@ -15,6 +15,7 @@ $(document).ready(function() {
            box.innerHTML = '<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 ' + content[i].topic.toLowerCase() + '"><div class="topic-wrapper"><h4> ' + content[i].question + '</h4><h5>'+ content[i].answer + '</h5></div></div>';
            //console.log(box.innerHTML);
            document.getElementById("topics-div").appendChild(box);
+           // .isotope('insert', box);
 
            /** CREATE BUTTONS FOR TOPICS **/
            if (topics.includes((data.faqs[i]).topic)) {
