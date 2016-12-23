@@ -12,8 +12,9 @@ $(document).ready(function() {
            /** FETCH FAQ SECTION **/
            //console.log(content[i].question);
            var box = document.createElement('div');
+           box.className += "col-xs-12 col-sm-4 col-md-4 col-lg-4 "
            box.className += content[i].topic.toLowerCase();
-           box.innerHTML = '<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"><div class="topic-wrapper"><h4> ' + content[i].question + '</h4><h5>'+ content[i].answer + '</h5></div></div>';
+           box.innerHTML = '<div class="topic-wrapper"><h4> ' + content[i].question + '</h4><h5>'+ content[i].answer + '</h5></div>';
            //console.log(box.innerHTML);
            document.getElementById("topics-div").appendChild(box);
 
@@ -31,7 +32,8 @@ $(document).ready(function() {
        }
 
 
-    }).then(function() {
+    })
+    .then(function() {
         var $container = $('#topics-div');
         $container.isotope({
             filter: '*',
@@ -41,6 +43,7 @@ $(document).ready(function() {
                 queue: false
             }
         });
+        $container.css({top: 100})
 
         $('.categories a').click(function () {
             $('.categories .active').removeClass('active');
@@ -54,6 +57,7 @@ $(document).ready(function() {
                     queue: false
                 }
             });
+            $container.css({top: 100})
             return false;
         });
     });
