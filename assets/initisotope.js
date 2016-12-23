@@ -1,6 +1,6 @@
 function initIsotope() {
     console.log('Initialized call');
-    var $container = $('#topic-wrapper');
+    var $container = $('#topics-div');
     $container.isotope({
         filter: '*',
         animationOptions: {
