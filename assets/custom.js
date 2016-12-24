@@ -29,7 +29,7 @@ $(document).ready(function () {
             url: formURL,
             type: "POST",
             data: serialized,
-
+            contentType: 'application/json; charset=utf-8',
             success: function (data, textStatus, jqXHR) {
                 console.log("passed");
                 $('[data-remodal-id=SuccessModal]').remodal().open();
@@ -39,9 +39,6 @@ $(document).ready(function () {
                 $('[data-remodal-id=FailedModal]').remodal().open();
             }
         });
-            // $(document).on('closing', '.remodal', function() {
-            //     inst.destroy();
-        // });
     });
 
 });

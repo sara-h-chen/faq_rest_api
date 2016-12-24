@@ -83,31 +83,40 @@
    // Authenticate with auth_token
    } else if ($method === 'POST') {
 
-        /* IF JSON CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
+        /* IF JSON ONLY CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
+        if ($_POST["answer"] == null && $_POST["topic"] == null) {
 
-       // Generate auth_token for checking
-       $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
-       //var_dump($checkToken);
-       $checkToken = hash('sha256', $checkToken);
-       //var_dump($checkToken);
-       $givenToken = $_POST["auth_token"];
-       //var_dump($givenToken);
-       $errorTypes = array('not authorised','topic undefined');
-       //var_dump($errorTypes);
-       if ($givenToken !== $checkToken && $givenToken !== "concertina") {
-           echo json_encode(array("error"=>$errorTypes[0]));
-       }
+            $receivedData = $_POST["question"];
+            var_dump($receivedData);
 
-       // Check if topic is valid
-       $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
-       // Get the list of topics
-       $result = $link->query("SELECT DISTINCT topic FROM faqs");
-       $list = $result->fetchAll(PDO::FETCH_COLUMN);
-       //var_dump($list);
-       $topic = $_POST["topic"];
-       if ($topic >= sizeof($list)) {
-           echo json_encode(array("error"=>$errorTypes[1]));
-       }
+        } else {
+
+            // Generate auth_token for checking
+            $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+            //var_dump($checkToken);
+            $checkToken = hash('sha256', $checkToken);
+            //var_dump($checkToken);
+            $givenToken = $_POST["auth_token"];
+            //var_dump($givenToken);
+            $errorTypes = array('not authorised','topic undefined');
+            //var_dump($errorTypes);
+            if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+                echo json_encode(array("error"=>$errorTypes[0]));
+            }
+
+            // Check if topic is valid
+            $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
+            // Get the list of topics
+            $result = $link->query("SELECT DISTINCT topic FROM faqs");
+            $list = $result->fetchAll(PDO::FETCH_COLUMN);
+            //var_dump($list);
+            $topic = $_POST["topic"];
+            if ($topic >= sizeof($list)) {
+                echo json_encode(array("error"=>$errorTypes[1]));
+            }
+
+        }
+
       
    }
 
