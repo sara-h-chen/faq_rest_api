@@ -62,30 +62,35 @@
         <div class="row text-center animate-in" data-anim-type="fade-in-up" id="topics-div">
          <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 INSERT_CATEGORY HERE">-->
          <!--<div class="topic-wrapper">-->
-         <!--<h3> QUESTION HERE </h3>-->
+         <!--<h4> QUESTION HERE </h4>-->
          <!--</div>-->
          <!--</div>-->
         </div>
     </div>
 </div>
 <!-- END OF SECTION -->
-<!-- BUTTON TO FORM THAT APPEARS ONCE A TOPIC HAS BEEN SELECTED -->
+<!-- BUTTON BRINGING UP FORM THAT APPEARS ONCE A TOPIC HAS BEEN SELECTED -->
 <div id="hidden-button" class="col-xs-6 col-xs-6 col-xs-6 remodal-bg" style="display: none;">
     <div class="row text-center">
         <a href="#modal" class="btn btn-primary btn-default"><span class="glyphicon glyphicon-send"></span> Have a question? Submit it here!</a>
     </div>
-    <!-- Contains the modal -->
+    <!-- CONTAINS POPUP FORM -->
     <div class="remodal" data-remodal-id="modal">
     <button data-remodal-action="close" class="remodal-close"></button>
-        <form name="question" id="question" class="question" method="post">
+        <form name="question" id="question" class="question" method="POST" action="../faqs.php">
             <label for="question">
                 <span>Thanks for sending in your question!</span>
                 <textarea name="question" required="true" placeholder="Type in your question here"></textarea>
             </label>
         </form>
-        <button data-remodal-action="confirm" class="remodal-confirm">Send</button>
+        <button data-remodal-action="confirm" class="remodal-confirm" id="form-button">Send</button>
         <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
     </div>
+</div>
+<!-- CONTAINS ALERT POPUP FOR AJAX REQUEST -->
+<div data-remodal-id="ResponseModal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <!--<p> RESPONSE FROM SERVER INSERTED HERE </p>-->
 </div>
 
 <div id="wavybg-wrapper">

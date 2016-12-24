@@ -83,6 +83,8 @@
    // Authenticate with auth_token
    } else if ($method === 'POST') {
 
+        /* IF JSON CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
+
        // Generate auth_token for checking
        $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
        //var_dump($checkToken);

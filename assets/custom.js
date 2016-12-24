@@ -18,4 +18,7 @@ $(document).ready(function () {
      CUSTOM SCRIPTS
      ======================================*/
 
+    $("#form-button").click(function() {
+        console.log("sent question");
+    })
 });
