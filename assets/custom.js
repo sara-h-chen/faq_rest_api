@@ -18,7 +18,30 @@ $(document).ready(function () {
      CUSTOM SCRIPTS
      ======================================*/
 
-    $("#form-button").click(function() {
-        console.log("sent question");
-    })
+    $('#form-button').click(function () {
+        // console.log("printed");
+        var forSubmission = $('#questiontext');
+        var serialized = forSubmission.serialize();
+        // console.log(serialized);
+        var formURL = $('#question').attr("action");
+        // console.log(formURL);
+        $.ajax({
+            url: formURL,
+            type: "POST",
+            data: serialized,
+
+            success: function (data, textStatus, jqXHR) {
+                console.log("passed");
+                $('[data-remodal-id=SuccessModal]').remodal().open();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("failed");
+                $('[data-remodal-id=FailedModal]').remodal().open();
+            }
+        });
+            // $(document).on('closing', '.remodal', function() {
+            //     inst.destroy();
+        // });
+    });
+
 });

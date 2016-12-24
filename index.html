@@ -80,17 +80,21 @@
         <form name="question" id="question" class="question" method="POST" action="../faqs.php">
             <label for="question">
                 <span>Thanks for sending in your question!</span>
-                <textarea name="question" required="true" placeholder="Type in your question here"></textarea>
             </label>
+            <textarea name="question" required="true" placeholder="Type in your question here" id="questiontext"></textarea>
+            <button type="submit" data-remodal-action="confirm" class="remodal-confirm" id="form-button">Send</button>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
         </form>
-        <button data-remodal-action="confirm" class="remodal-confirm" id="form-button">Send</button>
-        <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
     </div>
-</div>
-<!-- CONTAINS ALERT POPUP FOR AJAX REQUEST -->
-<div data-remodal-id="ResponseModal">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <!--<p> RESPONSE FROM SERVER INSERTED HERE </p>-->
+    <!-- CONTAINS ALERT POPUP FOR AJAX REQUEST -->
+    <div class="remodal" data-remodal-id="FailedModal">
+        <p>Oops, there was an error with your request. Your question has not been submitted. :(</p>
+        <button data-remodal-action="close" class="remodal-close"></button>
+    </div>
+    <div class="remodal" data-remodal-id="SuccessModal">
+        <p>Your question will be answered shortly. :)</p>
+        <button data-remodal-action="close" class="remodal-close"></button>
+    </div>
 </div>
 
 <div id="wavybg-wrapper">
