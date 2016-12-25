@@ -12,16 +12,17 @@
      * gets the HTTP method, path and body of the request
      */
     $method = $_SERVER['REQUEST_METHOD'];
-    $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
+    //$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
     // Uncomment if you want to upload a file to the webserver
     //$input = json_decode(file_get_contents('php://input'), true);
 
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
 
+    $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
+
     // Deal with GET requests
     if ($method === 'GET') {
-        $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
         // Get the list of topics
         $result = $link->query("SELECT DISTINCT topic FROM faqs");
         $item = $result->fetchAll(PDO::FETCH_COLUMN);
@@ -29,17 +30,18 @@
 
         $topic = $_GET['topic'];
         $q = $_GET['q'];
-        $ignoredWords = array('if', 'the', 'has', 'that', 'it', 'for', 'or', 'was', 'are', 'a', 'to');
-        $q = str_replace($ignoredWords, '', $q);
+        $ignoredWords = array('/\bif\b/i', '/\bthe\b/i', '/\bhas\b/i', '/\bthat\b/i', '/\bfor\b/i', '/\bor\b/i', '/\bwas\b/i', '/\bare\b/i', '/\ba\b/i', '/\bto\b/i');
+        $q = preg_replace($ignoredWords, "", $q);
+//        var_dump($q);
 
-        if ($topic == NULL && $q == NULL) {
+        if ($topic == null && $q == null) {
            // Return unfiltered data
            $result = $link->query("SELECT * FROM faqs");
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
            $output = array('faqs'=>$itemize);
            echo json_encode($output);
 
-        } else if ($topic !== NULL && $q == NULL) { 
+        } else if ($topic !== null && $q == null) {
            // Find index of topic
            foreach ($topicList as $row) {
               $topic = $row[$topic];
@@ -50,13 +52,14 @@
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
            $output = array('faqs'=>$itemize);
            echo json_encode($output);
-   
-        } else if ($topic == NULL && $q !== NULL) {
+
+        } else if ($topic == null && $q !== null) {
            // Full text search
            $result = $link->prepare("SELECT * FROM faqs WHERE topic LIKE :param OR answer LIKE :param OR question LIKE :param");
            $result->bindValue(':param', '%' . $q . '%', PDO::PARAM_STR);
            $result->execute();
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
+//           var_dump($itemize);
            $output = array('faqs'=>$itemize);
            echo json_encode($output);
 
@@ -84,40 +87,45 @@
    } else if ($method === 'POST') {
 
         /* IF JSON ONLY CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
-        if ($_POST["answer"] == null && $_POST["topic"] == null) {
+        if (!isset($_POST["answer"]) && (!isset($_POST["topic"]))) {
 
-            $receivedData = $_POST["question"];
-            var_dump($receivedData);
-
-        } else {
-
-            // Generate auth_token for checking
-            $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
-            //var_dump($checkToken);
-            $checkToken = hash('sha256', $checkToken);
-            //var_dump($checkToken);
-            $givenToken = $_POST["auth_token"];
-            //var_dump($givenToken);
-            $errorTypes = array('not authorised','topic undefined');
-            //var_dump($errorTypes);
-            if ($givenToken !== $checkToken && $givenToken !== "concertina") {
-                echo json_encode(array("error"=>$errorTypes[0]));
-            }
-
-            // Check if topic is valid
-            $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
-            // Get the list of topics
-            $result = $link->query("SELECT DISTINCT topic FROM faqs");
-            $list = $result->fetchAll(PDO::FETCH_COLUMN);
-            //var_dump($list);
-            $topic = $_POST["topic"];
-            if ($topic >= sizeof($list)) {
-                echo json_encode(array("error"=>$errorTypes[1]));
-            }
-
+            echo json_encode(array('logged'=>$_POST['question']));
         }
 
-      
+        exit;
+
+//        if (isset($_POST["answer"]) && isset($_POST["topic"])) {
+//// Generate auth_token for checking
+//            $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+//            //var_dump($checkToken);
+//            $checkToken = hash('sha256', $checkToken);
+//            //var_dump($checkToken);
+//            $givenToken = $_POST["auth_token"];
+//            //var_dump($givenToken);
+//            $errorTypes = array('not authorised','topic undefined');
+//            //var_dump($errorTypes);
+//            if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+//                echo json_encode(array("error"=>$errorTypes[0]));
+//            }
+//
+//            // Check if topic is valid
+//            $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
+//            // Get the list of topics
+//            $result = $link->query("SELECT DISTINCT topic FROM faqs");
+//            $list = $result->fetchAll(PDO::FETCH_COLUMN);
+//            //var_dump($list);
+//            $topic = $_POST["topic"];
+//            if ($topic >= sizeof($list)) {
+//                echo json_encode(array("error"=>$errorTypes[1]));
+//            }
+//
+//        } else {
+//
+//            $receivedData = $_POST["question"];
+//            var_dump($receivedData);
+//
+//        }
+
    }
 
 
