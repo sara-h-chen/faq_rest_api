@@ -34,14 +34,14 @@
         $q = preg_replace($ignoredWords, "", $q);
 //        var_dump($q);
 
-        if ($topic == null && $q == null) {
+        if (!isset($topic) && !isset($q)) {
            // Return unfiltered data
            $result = $link->query("SELECT * FROM faqs");
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
            $output = array('faqs'=>$itemize);
            echo json_encode($output);
 
-        } else if ($topic !== null && $q == null) {
+        } else if (isset($topic) && !isset($q)) {
            // Find index of topic
            foreach ($topicList as $row) {
               $topic = $row[$topic];
@@ -53,7 +53,7 @@
            $output = array('faqs'=>$itemize);
            echo json_encode($output);
 
-        } else if ($topic == null && $q !== null) {
+        } else if (!isset($topic) && isset($q)) {
            // Full text search
            $result = $link->prepare("SELECT * FROM faqs WHERE topic LIKE :param OR answer LIKE :param OR question LIKE :param");
            $result->bindValue(':param', '%' . $q . '%', PDO::PARAM_STR);
