@@ -6,6 +6,7 @@
        //$_SESSION["authenticated"] = 'true';
        //header('Location: ../faqs.php');
     }*/
+
      ob_start();
 
      /**
@@ -13,16 +14,15 @@
      */
     $method = $_SERVER['REQUEST_METHOD'];
     //$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
-    // Uncomment if you want to upload a file to the webserver
-    //$input = json_decode(file_get_contents('php://input'), true);
 
     header('Access-Control-Allow-Origin: *');
-    header('Content-Type: application/json');
 
     $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
 
     // Deal with GET requests
     if ($method === 'GET') {
+        header('Content-Type: application/json');
+
         // Get the list of topics
         $result = $link->query("SELECT DISTINCT topic FROM faqs");
         $item = $result->fetchAll(PDO::FETCH_COLUMN);
@@ -83,16 +83,25 @@
               }
            }
        }
-   // Authenticate with auth_token
+   /* AUTHENTICATE WITH AUTH_TOKEN WHEN TRYING TO UPDATE TABLE IN DB CONTAINING SITE CONTENT */
+   /* QUESTIONS CAN BE SUBMITTED BY ANYBODY AND WILL BE SAVED TO AN ALTERNATIVE TABLE IN DB */
    } else if ($method === 'POST') {
 
-        /* IF JSON ONLY CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
+        /* IF PARAM ONLY CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
         if (!isset($_POST["answer"]) && (!isset($_POST["topic"]))) {
+            if (isset($_POST['question'])) {
+                $var = $_POST['question'];
+                $update = $link->prepare("INSERT INTO questions(question) VALUES (:param)");
+                $update->bindValue(':param', $var, PDO::PARAM_STR);
+                $update->execute();
+            }
 
-            echo json_encode(array('logged'=>$_POST['question']));
+        /* IF PARAM CONTAINS 'ANSWER' OR 'TOPIC' THEN ALTER THE DB */
+        } else {
+            echo json_encode('{}');
         }
-
-        exit;
+            exit;
+    };
 
 //        if (isset($_POST["answer"]) && isset($_POST["topic"])) {
 //// Generate auth_token for checking
@@ -126,6 +135,6 @@
 //
 //        }
 
-   }
+
 
 

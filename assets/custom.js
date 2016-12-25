@@ -29,8 +29,7 @@ $(document).ready(function () {
             url: formURL,
             type: "POST",
             data: serialized,
-            contentType: 'application/json; charset=utf-8',
-            success: function (data, textStatus, jqXHR) {
+            success: function (textStatus, jqXHR) {
                 console.log("passed");
                 $('[data-remodal-id=SuccessModal]').remodal().open();
             },
