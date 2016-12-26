@@ -203,9 +203,107 @@
                 <button data-remodal-action="close" class="remodal-close"></button>
             </div>
         </div>
+        <!-- GENERATE TABLE BASED ON TOPIC LIST -->
+        <div class="content remodal-bg">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-plain">
+                            <div class="header">
+                                <h4 class="title">Topic List</h4>
+                                <p class="category">currently held in the database</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <th><strong>TOPIC</strong></th>
+                                    </thead>
+                                    <tbody id="tableOfTopics">
+                                    <!-- LIST GENERATED HERE WITH AJAX -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <form name="addTopic" id="addTopic" method="POST" action="../topics.php" enctype="application/x-www-form-urlencoded">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Add Topic</label>
+                                <input type="text" class="form-control border-input" placeholder="Topic to add to database" name="topicSpcfd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button id="add" type="submit" class="btn btn-success btn-fill btn-wd">ADD</button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+            <div class="remodal" data-remodal-id="FailedModal">
+                <p>Error: Failed to insert into database</p>
+                <button data-remodal-action="close" class="remodal-close"></button>
+            </div>
+            <div class="remodal" data-remodal-id="SuccessModal">
+                <p>Topic added</p>
+                <button data-remodal-action="close" class="remodal-close"></button>
+            </div>
+        </div>
+        <!-- FORM TO ANSWER FAQS -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7 col-lg-offset-2 col-md-offset-2">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Add FAQs</h4>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Topic</label>
+                                                <input type="text" class="form-control border-input" placeholder="Specify topic">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Question</label>
+                                                <textarea rows="10" class="form-control border-input" placeholder="What's the question?"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Answer</label>
+                                                <textarea rows="10" class="form-control border-input" placeholder="Please type in a response."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Add FAQ</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
-
 
 </body>
 
