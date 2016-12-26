@@ -3,33 +3,24 @@
  */
 $(document).ready(function() {
     $.ajax({
-        url: "http://community.dur.ac.uk/sara.h.chen/faq2016/assets/queryscript.php"
+        url: "/assets/queryscript.php"
     }).then(function (data) {
-        /* CREATE ID FOR FILTERING TOPICS */
-        var topics = [];
-        for (var i = 0; i < data.length; i++) {
+        /* FILL SUMMARY ON DASHBOARD */
+        var box1 = document.createElement('h3');
+        box1.innerHTML = data.tickets;
+        document.getElementById("t_pending").appendChild(box1);
 
-        var box = document.createElement('p');
+        var box2 = document.createElement('h3');
+        box2.innerHTML = data.topics;
+        document.getElementById("topicNo").appendChild(box2);
 
-            /* FETCH FAQ SECTION */
-            // var box = document.createElement('div');
-            // box.className += "col-xs-12 col-sm-4 col-md-4 col-lg-4 "
-            // box.className += content[i].topic.toLowerCase();
-            // box.innerHTML = '<div class="topic-wrapper"><h4> ' + content[i].question + '</h4><h5>' + content[i].answer + '</h5></div>';
-            // document.getElementById("topics-div").appendChild(box);
-            //
-            // /* CREATE BUTTONS FOR TOPICS */
-            // if (topics.includes((data.faqs[i]).topic)) {
-            //     continue;
-            // } else {
-            //     var container = document.createElement('a');
-            //     topics.push(data.faqs[i].topic);
-            //     container.innerHTML = '<a href="#" data-filter=".' + data.faqs[i].topic.toLowerCase() + '" class="btn btn-custom btn-custom-two btn-sm">' + data.faqs[i].topic + '</a>';
-            //     document.getElementById("listOfTopics").appendChild(container);
-            // }
+        var box3 = document.createElement('h3');
+        box3.innerHTML = data.questions;
+        document.getElementById("listed_q").appendChild(box3);
 
-        }
-
+        var box4 = document.createElement('h3');
+        box4.innerHTML = data.answers;
+        document.getElementById("listed_a").appendChild(box4);
 
     })
 });

@@ -14,12 +14,11 @@ $(document).ready(function(){
     $('[rel="tooltip"]').tooltip();
 
     $(".scroller").on('click', function(event) {
-        console.log("clicked");
         event.preventDefault();
         var target = "#" + this.getAttribute('data-target');
         $('html, body').animate({
             scrollTop: $(target).offset().top
-        }, "fast");
+        }, 300);
     });
 
 });
