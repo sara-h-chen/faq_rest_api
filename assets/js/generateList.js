@@ -19,6 +19,19 @@ $(document).ready(function() {
         }
     });
 
+    $.ajax({
+        url: "/assets/queryscript.php"
+    }).then(function(data) {
+        var content = data.open_tickets;
+        console.log(content);
+        for (var i=0; i <= data.topics.length; i++) {
+            // console.log(content[i]);
+            var box = document.createElement('tr');
+            box.innerHTML = '<td>' + content[i] + '</td>';
+            document.getElementById('open_tickets').appendChild(box);
+        }
+    });
+
     /*================================
       SUBMIT TOPIC TO DATABASE
       ==============================*/
