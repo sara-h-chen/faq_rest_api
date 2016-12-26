@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
     $.ajax({
-        url: "/assets/queryscript.php"
+        url: "assets/queryscript.php"
     }).then(function (data) {
         /* FILL SUMMARY ON DASHBOARD */
         var box1 = document.createElement('h3');

@@ -19,7 +19,7 @@
     if ($method === 'GET') {
 
         $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
-        $result = $link->query("SELECT DISTINCT topic FROM faqs");
+        $result = $link->query("SELECT topic FROM topics");
         $item = $result->fetchAll(PDO::FETCH_COLUMN);
         $output = array('topics'=>$item);
 

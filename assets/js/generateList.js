@@ -21,7 +21,7 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "/assets/queryscript.php"
+        url: "assets/queryscript.php"
     }).then(function(data) {
         var content = data.open_tickets;
         console.log(content);
