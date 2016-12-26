@@ -94,7 +94,15 @@
 
         /* IF PARAM CONTAINS 'ANSWER' OR 'TOPIC' THEN ALTER THE DB */
         } else {
-            echo json_encode('{}');
+            $topic = $_POST['topic'];
+            $question = $_POST['question'];
+            $answer = $_POST['answer'];
+            $update = $link->prepare("INSERT INTO faqs(topic, question, answer) VALUES (:t_param, :q_param, :a_param)");
+            $update->bindValue(':t_param', $topic, PDO::PARAM_STR);
+            $update->bindValue(':q_param', $question, PDO::PARAM_STR);
+            $update->bindValue(':a_param', $answer, PDO::PARAM_STR);
+            $update->execute();
+            echo "Added to DB";
         }
             exit;
     };

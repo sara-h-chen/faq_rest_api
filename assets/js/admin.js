@@ -21,6 +21,23 @@ $(document).ready(function(){
         }, 300);
     });
 
+    $('#faqsForm').on('submit',function(e){
+        e.preventDefault();
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            url      : $(this).attr('action'),
+            data     : $(this).serialize(),
+            success  : function(data) {
+                console.log(data)
+                // TODO: Add confirmation indicator
+            },
+            error    : function(event) {
+                // TODO: Handle error
+            }
+        });
+    });
+
 });
 
 // activate collapse right menu when the windows is resized

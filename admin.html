@@ -41,7 +41,7 @@
 <div class="wrapper">
     <!-- SIDE NAVIGATION BAR SECTION BEGIN -->
     <div class="sidebar" data-background-color="white" data-active-color="primary">
-        <div class="sidebar-wrapper">
+        <div class="sidebar-wrapper" style="position: fixed;">
             <div class="logo">
                 <a class="simple-text">
                     Welcome, Admin!
@@ -260,18 +260,38 @@
         <div class="content" id="faqForm">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-plain">
+                            <div class="header">
+                                <h4 class="title">Topic List</h4>
+                                <p class="category">currently held in the database</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <th><strong>OPEN TICKETS</strong></th>
+                                    </thead>
+                                    <tbody id="open_tickets">
+                                    <!-- LIST GENERATED HERE WITH AJAX -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-8 col-md-7 col-lg-offset-2 col-md-offset-2">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Add FAQs</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form id="faqsForm" action="faqs.php">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Topic</label>
-                                                <input type="text" class="form-control border-input" placeholder="Specify topic">
+                                                <input type="text" class="form-control border-input" placeholder="Specify topic" name="topic">
                                             </div>
                                         </div>
                                     </div>
@@ -279,7 +299,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Question</label>
-                                                <textarea rows="10" class="form-control border-input" placeholder="What's the question?"></textarea>
+                                                <textarea rows="10" class="form-control border-input" placeholder="What's the question?" name="question"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -287,7 +307,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Answer</label>
-                                                <textarea rows="10" class="form-control border-input" placeholder="Please type in a response."></textarea>
+                                                <textarea rows="10" class="form-control border-input" placeholder="Please type in a response." name="answer"></textarea>
                                             </div>
                                         </div>
                                     </div>

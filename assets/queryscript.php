@@ -30,4 +30,9 @@ $result = $link->query("SELECT COUNT(*) FROM (SELECT answer FROM faqs)");
 $tickets = $result->fetchAll(PDO::FETCH_COLUMN);
 $all_output['answers'] = $tickets;
 
+$result = $link->query("SELECT * FROM questions");
+$questions = $result->fetchAll(PDO::FETCH_COLUMN);
+$output = $questions;
+$all_output['open_tickets'] = $output;
+
 echo json_encode($all_output);
