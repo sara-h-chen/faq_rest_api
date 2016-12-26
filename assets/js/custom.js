@@ -18,7 +18,7 @@ $(document).ready(function () {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log("failed");
-                console.log(textStatus + errorThrown);
+                console.log(textStatus + ": " + errorThrown);
                 $('[data-remodal-id=FailedModal]').remodal().open();
             }
         });

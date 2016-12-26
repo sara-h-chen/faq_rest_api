@@ -10,18 +10,18 @@
      ob_start();
 
 
-    // gets the HTTP method, path and body of the request
+    /* Gets the HTTP method, path and body of the request */
     $method = $_SERVER['REQUEST_METHOD'];
 
     header('Access-Control-Allow-Origin: *');
 
     $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
 
-    // Deal with GET requests
+    /* Deal with GET requests */
     if ($method === 'GET') {
         header('Content-Type: application/json');
 
-        // Get the list of topics
+        /* Get the list of topics */
         $result = $link->query("SELECT DISTINCT topic FROM faqs");
         $item = $result->fetchAll(PDO::FETCH_COLUMN);
         $topicList = array('topics'=>$item);
@@ -32,18 +32,18 @@
         $q = preg_replace($ignoredWords, "", $q);
 
         if (!isset($topic) && !isset($q)) {
-           // Return unfiltered data
+           /* Return unfiltered data */
            $result = $link->query("SELECT * FROM faqs");
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
            $output = array('faqs'=>$itemize);
            echo json_encode($output);
 
         } else if (isset($topic) && !isset($q)) {
-           // Find index of topic
+           /* Find index of topic */
            foreach ($topicList as $row) {
               $topic = $row[$topic];
         }
-           // Search database for topic, based on the index
+           /* Search database for topic, based on the index */
            $result = $link->prepare("SELECT question,answer FROM faqs WHERE topic=?");
            $result->execute(array($topic));
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@
            echo json_encode($output);
 
         } else if (!isset($topic) && isset($q)) {
-           // Full text search
+           /* Full text search */
            $result = $link->prepare("SELECT * FROM faqs WHERE topic LIKE :param OR answer LIKE :param OR question LIKE :param");
            $result->bindValue(':param', '%' . $q . '%', PDO::PARAM_STR);
            $result->execute();
@@ -60,17 +60,17 @@
            echo json_encode($output);
 
         } else {
-           // Full text search
+           /* Full text search */
            $result = $link->prepare("SELECT * FROM faqs WHERE topic LIKE :param OR answer LIKE :param OR question LIKE :param");
            $result->bindValue(':param', '%' . $q . '%', PDO::PARAM_STR);
            $result->execute();
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
 
-           // Get index of topic
+           /* Get index of topic */
            foreach ($topicList as $row) {
               $topic = $row[$topic];
            }
-           // Break up the array; find the 'topic' field for comparison
+           /* Break up the array; find the 'topic' field for comparison */
            foreach ($itemize as $val) {
               foreach ($val as $key2 => $val2) {
                   if ($val2 == $topic) {
@@ -85,7 +85,7 @@
 
         /* IF PARAM ONLY CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
         if (!isset($_POST["answer"]) && (!isset($_POST["topic"]))) {
-            if (isset($_POST['question'])) {
+            if (isset($_POST['question']) && !empty($_POST['question'])) {
                 $var = $_POST['question'];
                 $update = $link->prepare("INSERT INTO questions(question) VALUES (:param)");
                 $update->bindValue(':param', $var, PDO::PARAM_STR);

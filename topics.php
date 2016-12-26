@@ -8,12 +8,9 @@
 
     ob_start();
    
-    /**
-     * gets the HTTP method, path and body of the request
-     */
+
+    /* Gets the HTTP method, path and body of the request */
     $method = $_SERVER['REQUEST_METHOD'];
-    $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
-    // if you are trying to upload a file to the webserver
     //$input = json_decode(file_get_contents('php://input'), true);
 
     header('Access-Control-Allow-Origin: *');    
@@ -29,12 +26,29 @@
         echo json_encode($output);
 
     } else if ($method === 'POST') {
+
         $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
         $checkToken = hash('sha256', $checkToken);
         $givenToken = $_POST["auth_token"];
+        if (empty($givenToken)) {
+            /* Redirect browser */
+            header("Location: authenticate.php");
+//            header("Location: ../password/authenticate.php");
+
+            /* Ensures code beneath is not executed */
+            exit;
+        }
+
         $errorTypes = array('not authorised','topic undefined');
         //var_dump($errorTypes);
+//        var_dump($_POST['topicSpcfd']);
+
         if ($givenToken !== $checkToken && $givenToken !== "concertina") {
            echo json_encode(array("error"=>$errorTypes[0]));
-        } 
+        }
+
+        if (empty($_POST['topicSpcfd'])) {
+            echo json_encode(array("error"=>$errorTypes[1]));
+        }
+
     }
