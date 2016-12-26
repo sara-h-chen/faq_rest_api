@@ -16,7 +16,7 @@ $(document).ready(function(){
     $(".scroller").on('click', function(event) {
         event.preventDefault();
         var target = "#" + this.getAttribute('data-target');
-        $('html, body').animate({
+        $('body').animate({
             scrollTop: $(target).offset().top
         }, 300);
     });
