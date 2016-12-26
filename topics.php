@@ -13,7 +13,8 @@
     $method = $_SERVER['REQUEST_METHOD'];
     //$input = json_decode(file_get_contents('php://input'), true);
 
-    header('Access-Control-Allow-Origin: *');    
+    header('Access-Control-Allow-Origin: *');
+    // TODO: Uncomment this
 //    header('Content-Type: application/json');
 
     if ($method === 'GET') {
@@ -51,6 +52,7 @@
         $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
 
         $topic = $_POST['topic'];
+        $topic = ucwords(strtolower($topic));
         echo $topic;
         $update = $link->prepare("INSERT INTO topics(topic) VALUES (:t_param)");
         $update->bindValue(':t_param', $topic, PDO::PARAM_STR);

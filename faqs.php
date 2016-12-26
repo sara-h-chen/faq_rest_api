@@ -101,6 +101,33 @@ if ($method === 'GET') {
         $topic = $_POST['topic'];
         $question = $_POST['question'];
         $answer = $_POST['answer'];
+        $topic = ucwords(strtolower($topic));
+//        var_dump($topic);
+//        var_dump($question);
+//        var_dump($answer);
+
+        /* Get topic IDs */
+        $getTopics = $link->query("SELECT * FROM topics");
+        $itemize = $getTopics->fetchAll(PDO::FETCH_ASSOC);
+        $output = array($itemize);
+//        var_dump($output);
+
+        $totalTopics = 0;
+        foreach ($output as $row) {
+            var_dump($output);
+            foreach ($val as $key => $val2) {
+                var_dump($val);
+                var_dump($key);
+                var_dump($val2);
+                if ($val == $topic) {
+                    var_dump($key);
+                } else {
+                    $totalTopics++;
+                }
+            }
+        }
+        var_dump($totalTopics);
+
         $update = $link->prepare("INSERT INTO faqs(topic, question, answer) VALUES (:t_param, :q_param, :a_param)");
         $update->bindValue(':t_param', $topic, PDO::PARAM_STR);
         $update->bindValue(':q_param', $question, PDO::PARAM_STR);

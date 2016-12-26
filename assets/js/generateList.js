@@ -13,9 +13,9 @@ $(document).ready(function() {
         data = JSON.parse(data);
         var content = data.topics;
         // console.log(content);
-        for (var i=0; i < data.topics.length; i++) {
+        for (var i=0; i < content.length; i++) {
             var box = document.createElement('tr');
-            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>';
+            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?topic=' + content[i].toLowerCase() + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
             document.getElementById('tableOfTopics').appendChild(box);
         }
     });
@@ -25,10 +25,10 @@ $(document).ready(function() {
     }).then(function(data) {
         var content = data.open_tickets;
         console.log(content);
-        for (var i=0; i <= data.topics.length; i++) {
+        for (var i=0; i < content.length; i++) {
             // console.log(content[i]);
             var box = document.createElement('tr');
-            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>';
+            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?id=' + (i+1) + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
             document.getElementById('open_tickets').appendChild(box);
         }
     });
