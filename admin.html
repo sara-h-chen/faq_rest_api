@@ -73,7 +73,7 @@
     </div>
     <!-- SIDE NAVIGATION BAR SECTION END -->
 
-    <div class="main-panel">
+    <div class="main-panel remodal-bg">
         <!-- COLLAPSIBLE PANEL FOR SMALL DEVICES -->
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -94,7 +94,7 @@
         </nav>
 
         <!-- GENERATE CONTENT ON PAGE -->
-        <div class="content remodal-bg" id="dashbd">
+        <div class="content" id="dashbd">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
@@ -196,16 +196,16 @@
                 </div>
             </div>
             <div class="remodal" data-remodal-id="FailedModal">
-                <p><!-- insert warning here --></p>
+                <p>Oops! Something went wrong :(</p>
                 <button data-remodal-action="close" class="remodal-close"></button>
             </div>
             <div class="remodal" data-remodal-id="SuccessModal">
-                <p><!-- insert confirmation here --></p>
+                <p>Update successful!</p>
                 <button data-remodal-action="close" class="remodal-close"></button>
             </div>
         </div>
         <!-- GENERATE TABLE BASED ON TOPIC LIST -->
-        <div class="content remodal-bg" id="topicList">
+        <div class="content" id="topicList">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -235,7 +235,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Add Topic</label>
-                                <input type="text" class="form-control border-input" placeholder="Topic to add to database" name="topicSpcfd">
+                                <input type="text" class="form-control border-input" placeholder="Topic to add to database" name="topic">
                             </div>
                         </div>
                     </div>
@@ -246,14 +246,6 @@
                     </div>
                     <div class="clearfix"></div>
                 </form>
-            </div>
-            <div class="remodal" data-remodal-id="FailedModal">
-                <p>Error: Failed to insert into database</p>
-                <button data-remodal-action="close" class="remodal-close"></button>
-            </div>
-            <div class="remodal" data-remodal-id="SuccessModal">
-                <p>Topic added</p>
-                <button data-remodal-action="close" class="remodal-close"></button>
             </div>
         </div>
         <!-- FORM TO ANSWER FAQS -->

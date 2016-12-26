@@ -29,11 +29,13 @@ $(document).ready(function(){
             url      : $(this).attr('action'),
             data     : $(this).serialize(),
             success  : function(data) {
-                console.log(data)
-                // TODO: Add confirmation indicator
+                console.log("passed");
+                $('[data-remodal-id=SuccessModal]').remodal().open();
             },
-            error    : function(event) {
-                // TODO: Handle error
+            error    : function(jqXHR, textStatus, errorThrown) {
+                console.log("failed");
+                console.log(textStatus + ": " + errorThrown);
+                $('[data-remodal-id=FailedModal]').remodal().open();
             }
         });
     });

@@ -8,8 +8,9 @@ $(document).ready(function() {
      ===============================*/
 
     $.ajax({
-       url: "http://community.dur.ac.uk/sara.h.chen/faq2016/topics.php"
+       url: "/topics.php"
     }).then(function(data) {
+        data = JSON.parse(data);
         var content = data.topics;
         // console.log(content);
         for (var i=0; i < data.topics.length; i++) {
@@ -36,29 +37,28 @@ $(document).ready(function() {
       SUBMIT TOPIC TO DATABASE
       ==============================*/
 
-    $('#add').click(function(event) {
-        var toProcess = $('input[name=topicSpcfd]').val();
-        var formURL = $('#addTopic').attr("action");
-        var forSubmission = {
-            'topic': toProcess
-        };
-
+    $('#addTopic').on('submit',function(e){
+        e.preventDefault();
+        // a = $(this).serialize();
+        blob = {};
+        $(this).serializeArray().map(function(x){blob[x.name] = x.value;});
+        console.log(blob);
         $.ajax({
-            url: formURL,
-            type: "POST",
-            data: forSubmission.serialize(),
-            success: function (textStatus, jqXHR) {
+            type     : "POST",
+            cache    : false,
+            url      : $(this).attr('action'),
+            data     : blob,
+            success  : function(data) {
                 console.log("passed");
+                console.log(data);
                 $('[data-remodal-id=SuccessModal]').remodal().open();
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error    : function(jqXHR, textStatus, errorThrown) {
                 console.log("failed");
                 console.log(textStatus + ": " + errorThrown);
                 $('[data-remodal-id=FailedModal]').remodal().open();
             }
         });
-
-
-    })
+    });
 
 });

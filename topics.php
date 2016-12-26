@@ -14,7 +14,7 @@
     //$input = json_decode(file_get_contents('php://input'), true);
 
     header('Access-Control-Allow-Origin: *');    
-    header('Content-Type: application/json');
+//    header('Content-Type: application/json');
 
     if ($method === 'GET') {
 
@@ -27,28 +27,34 @@
 
     } else if ($method === 'POST') {
 
-        $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
-        $checkToken = hash('sha256', $checkToken);
-        $givenToken = $_POST["auth_token"];
-        if (empty($givenToken) && empty($_COOKIE['authentication'])) {
+//        $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+//        $checkToken = hash('sha256', $checkToken);
+//        $givenToken = $_POST["auth_token"];
+//        if (empty($givenToken) && empty($_COOKIE['authentication'])) {
             /* Redirect browser */
 //            header("Location: authenticate.php");
-            header("Location: ../password/authenticate.php");
+//            header("Location: ../password/authenticate.php");
+//
+//            /* Ensures code beneath is not executed */
+//            exit;
+//        }
 
-            /* Ensures code beneath is not executed */
-            exit;
-        }
+//        $errorTypes = array('not authorised','topic undefined');
+//
+//        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+//           echo json_encode(array("error"=>$errorTypes[0]));
+//        }
+//
+//        if (empty($_POST['topicSpcfd'])) {
+//            echo json_encode(array("error"=>$errorTypes[1]));
+//        }
+        $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
 
-        $errorTypes = array('not authorised','topic undefined');
-        //var_dump($errorTypes);
-//        var_dump($_POST['topicSpcfd']);
-
-        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
-           echo json_encode(array("error"=>$errorTypes[0]));
-        }
-
-        if (empty($_POST['topicSpcfd'])) {
-            echo json_encode(array("error"=>$errorTypes[1]));
-        }
+        $topic = $_POST['topic'];
+        echo $topic;
+        $update = $link->prepare("INSERT INTO topics(topic) VALUES (:t_param)");
+        $update->bindValue(':t_param', $topic, PDO::PARAM_STR);
+        $update->execute();
+        echo "Added to DB";
 
     }
