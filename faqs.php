@@ -9,11 +9,9 @@
 
      ob_start();
 
-     /**
-     * gets the HTTP method, path and body of the request
-     */
+
+    // gets the HTTP method, path and body of the request
     $method = $_SERVER['REQUEST_METHOD'];
-    //$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
 
     header('Access-Control-Allow-Origin: *');
 
@@ -32,7 +30,6 @@
         $q = $_GET['q'];
         $ignoredWords = array('/\bif\b/i', '/\bthe\b/i', '/\bhas\b/i', '/\bthat\b/i', '/\bfor\b/i', '/\bor\b/i', '/\bwas\b/i', '/\bare\b/i', '/\ba\b/i', '/\bto\b/i');
         $q = preg_replace($ignoredWords, "", $q);
-//        var_dump($q);
 
         if (!isset($topic) && !isset($q)) {
            // Return unfiltered data
@@ -59,7 +56,6 @@
            $result->bindValue(':param', '%' . $q . '%', PDO::PARAM_STR);
            $result->execute();
            $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
-//           var_dump($itemize);
            $output = array('faqs'=>$itemize);
            echo json_encode($output);
 
@@ -74,7 +70,7 @@
            foreach ($topicList as $row) {
               $topic = $row[$topic];
            }
-          // Break up the array; find the 'topic' field for comparison
+           // Break up the array; find the 'topic' field for comparison
            foreach ($itemize as $val) {
               foreach ($val as $key2 => $val2) {
                   if ($val2 == $topic) {
