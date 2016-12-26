@@ -24,4 +24,14 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click','.scroller', function(event) {
+
+        console.log("clicked");
+        event.preventDefault();
+        var target = "#" + this.getAttribute('data-target');
+        $('html, body').animate({
+            scrollTop: $(target).offset().top
+        }, 2000);
+    });
+
 });

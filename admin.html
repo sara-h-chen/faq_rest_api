@@ -41,19 +41,19 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="admin.html">
+                    <a class="scroller" href="#" data-target="dashbd">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin/topic_list.html">
+                    <a class="scroller" href="#" data-target="topicList">
                         <i class="ti-view-list-alt"></i>
                         <p>Topic List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin/answer_page.html">
+                    <a class="scroller" href="#" data-target="faqForm">
                         <i class="ti-pencil-alt2"></i>
                         <p>Add FAQs/Responses</p>
                     </a>
@@ -85,7 +85,7 @@
         </nav>
 
         <!-- GENERATE CONTENT ON PAGE -->
-        <div class="content remodal-bg">
+        <div class="content remodal-bg" id="dashbd">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
@@ -204,7 +204,7 @@
             </div>
         </div>
         <!-- GENERATE TABLE BASED ON TOPIC LIST -->
-        <div class="content remodal-bg">
+        <div class="content remodal-bg" id="topicList">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -229,7 +229,7 @@
             </div>
 
             <div class="container-fluid">
-                <form name="addTopic" id="addTopic" method="POST" action="../topics.php" enctype="application/x-www-form-urlencoded">
+                <form name="addTopic" id="addTopic" method="POST" action="topics.php" enctype="application/x-www-form-urlencoded">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -256,7 +256,7 @@
             </div>
         </div>
         <!-- FORM TO ANSWER FAQS -->
-        <div class="content">
+        <div class="content" id="faqForm">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-8 col-md-7 col-lg-offset-2 col-md-offset-2">

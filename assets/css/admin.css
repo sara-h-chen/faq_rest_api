@@ -464,7 +464,6 @@ hr {
   z-index: 2;
   float: right;
   width: calc(100% - 260px);
-  min-height: 100%;
 }
 .main-panel > .content {
   padding: 30px 15px;
@@ -481,7 +480,6 @@ hr {
 .main-panel {
   overflow: auto;
   max-height: 100%;
-  height: 100%;
   -webkit-transition-property: top,bottom;
   transition-property: top,bottom;
   -webkit-transition-duration: .2s,.2s;
