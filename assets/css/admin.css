@@ -1245,7 +1245,7 @@ textarea.form-control {
   background-color: #fff;
 }
 .table-striped tbody > tr:nth-of-type(2n) {
-  background-color: #FFFCF5;
+  background-color: #e6e3dd;
 }
 .table-striped > thead > tr > th,
 .table-striped > tbody > tr > th,
@@ -3310,4 +3310,8 @@ textarea.form-control {
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
   }
+}
+
+.delete-row {
+  text-align: right;
 }

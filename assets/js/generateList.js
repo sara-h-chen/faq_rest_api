@@ -14,7 +14,7 @@ $(document).ready(function() {
         // console.log(content);
         for (var i=0; i < data.topics.length; i++) {
             var box = document.createElement('tr');
-            box.innerHTML = '<td>' + content[i] + '</td>';
+            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>';
             document.getElementById('tableOfTopics').appendChild(box);
         }
     });
@@ -27,7 +27,7 @@ $(document).ready(function() {
         for (var i=0; i <= data.topics.length; i++) {
             // console.log(content[i]);
             var box = document.createElement('tr');
-            box.innerHTML = '<td>' + content[i] + '</td>';
+            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>';
             document.getElementById('open_tickets').appendChild(box);
         }
     });
