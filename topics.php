@@ -30,10 +30,10 @@
         $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
         $checkToken = hash('sha256', $checkToken);
         $givenToken = $_POST["auth_token"];
-        if (empty($givenToken)) {
+        if (empty($givenToken) && empty($_COOKIE['authentication'])) {
             /* Redirect browser */
-            header("Location: authenticate.php");
-//            header("Location: ../password/authenticate.php");
+//            header("Location: authenticate.php");
+            header("Location: ../password/authenticate.php");
 
             /* Ensures code beneath is not executed */
             exit;
