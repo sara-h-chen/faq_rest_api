@@ -30,7 +30,7 @@ $(document).ready(function(){
             type     : "POST",
             cache    : false,
             url      : $(this).attr('action'),
-            data     : $(this).serialize(),
+            data     : $(this).serialize() + '&' + $.cookie("auth_token"),
             success  : function(data) {
                 data = JSON.parse(data);
                 console.log("passed");

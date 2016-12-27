@@ -27,7 +27,7 @@ $(document).ready(function() {
 
         for (var i=0; i < content.length; i++) {
             var box = document.createElement('tr');
-            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?topic=' + content[i].toLowerCase() + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
+            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?topic=' + content[i].toLowerCase() + '&auth_token=' + $.cookie("auth_token") +'"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
             document.getElementById('tableOfTopics').appendChild(box);
         }
     });
@@ -42,7 +42,7 @@ $(document).ready(function() {
         for (var i=0; i < content.length; i++) {
             // console.log(content[i]);
             var box = document.createElement('tr');
-            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?id=' + (i+1) + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
+            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?id=' + (i+1) + '&auth_token=' + $.cookie("auth_token") + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
             document.getElementById('open_tickets').appendChild(box);
         }
     });
@@ -61,7 +61,7 @@ $(document).ready(function() {
             type     : "POST",
             cache    : false,
             url      : $(this).attr('action'),
-            data     : blob,
+            data     : blob + '&' + $.cookie("auth_token"),
             success  : function(data) {
                 console.log("passed");
                 console.log(data);
