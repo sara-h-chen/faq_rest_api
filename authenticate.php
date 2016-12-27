@@ -10,12 +10,13 @@
 $allowedUsers = array('dcs0spb', 'jrvh15');
 
 if (in_array($_SERVER['REMOTE_USER'],$allowedUsers)) {
-    $cookieName = "authentication";
+    $cookieName = "auth_token";
     $createToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+    echo $createToken;
     $createToken = hash('sha256', $createToken);
     /* Stores cookies for 15 days */
     setcookie($cookieName, $createToken, time() + (86400 * 15), "/");
-//    header('Location: ../faq2016/faqs.php');
+    header('Location: admin.html');
 } else {
-    echo ("Error: Authentication failed");
+    header('Location: denied.html');
 };
