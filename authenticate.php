@@ -15,6 +15,7 @@ if (in_array($_SERVER['REMOTE_USER'],$allowedUsers)) {
     $createToken = hash('sha256', $createToken);
     /* Stores cookies for 15 days */
     setcookie($cookieName, $createToken, time() + (86400 * 15), "/");
+    // TODO: Add cascade on DELETE
 //    header('Location: ../faq2016/faqs.php');
 } else {
     echo ("Error: Authentication failed");

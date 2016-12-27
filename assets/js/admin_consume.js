@@ -4,6 +4,8 @@
 $(document).ready(function() {
     $.ajax({
         url: "assets/queryscript.php"
+        /* UNCOMMENT FOR MIRA */
+        // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/assets/queryscript.php"
     }).then(function (data) {
         /* FILL SUMMARY ON DASHBOARD */
         var box1 = document.createElement('h3');

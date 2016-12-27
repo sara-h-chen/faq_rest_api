@@ -9,10 +9,22 @@ $(document).ready(function() {
 
     $.ajax({
        url: "/topics.php"
+        /* UNCOMMENT FOR MIRA */
+        // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/topics.php"
     }).then(function(data) {
         data = JSON.parse(data);
         var content = data.topics;
         // console.log(content);
+
+        /* ADDS TO DROPDOWN */
+        $.each(content, function (i, item) {
+            // console.log(item);
+            $('#topicSelect').append($('<option>', {
+                value: item,
+                text : item
+            }));
+        });
+
         for (var i=0; i < content.length; i++) {
             var box = document.createElement('tr');
             box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?topic=' + content[i].toLowerCase() + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
@@ -22,6 +34,8 @@ $(document).ready(function() {
 
     $.ajax({
         url: "assets/queryscript.php"
+        /* UNCOMMENT FOR MIRA */
+        // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/assets/queryscript.php"
     }).then(function(data) {
         var content = data.open_tickets;
         console.log(content);

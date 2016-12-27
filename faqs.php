@@ -108,28 +108,37 @@ if ($method === 'GET') {
 
         /* Get topic IDs */
         $getTopics = $link->query("SELECT * FROM topics");
-        $itemize = $getTopics->fetchAll(PDO::FETCH_ASSOC);
-        $output = array($itemize);
-//        var_dump($output);
+        // TODO: Refactor
+        // $itemize = $getTopics->fetchAll(PDO::FETCH_ASSOC);
+        // $output = array($itemize);
+        // var_dump($output);
+        // foreach ($output as $row) {
+        //     var_dump($row);
+        //     foreach ($val as $key => $val2) {
+        //         var_dump($val);
+        //         // var_dump($key);
+        //         // var_dump($val2);
+        //         if ($val == $topic) {
+        //             var_dump($key);
+        //         } else {
+        //             $totalTopics++;
+        //         }
+        //     }
+        // }
 
-        $totalTopics = 0;
-        foreach ($output as $row) {
-            var_dump($output);
-            foreach ($val as $key => $val2) {
-                var_dump($val);
-                var_dump($key);
-                var_dump($val2);
-                if ($val == $topic) {
-                    var_dump($key);
-                } else {
-                    $totalTopics++;
-                }
+        $topic_id = -1;
+        while($data = $getTopics->fetch( PDO::FETCH_ASSOC )){
+            if ($data['topic'] == $topic) {
+                $topic_id = $data['id'];
             }
         }
-        var_dump($totalTopics);
 
-        $update = $link->prepare("INSERT INTO faqs(topic, question, answer) VALUES (:t_param, :q_param, :a_param)");
-        $update->bindValue(':t_param', $topic, PDO::PARAM_STR);
+        if ($topic_id == -1) {
+            throw new Exception('Incorrect topic chosen.');
+        }
+
+        $update = $link->prepare("INSERT INTO faqs(topic_id, question, answer) VALUES (:t_param, :q_param, :a_param)");
+        $update->bindValue(':t_param', $topic_id, PDO::PARAM_STR);
         $update->bindValue(':q_param', $question, PDO::PARAM_STR);
         $update->bindValue(':a_param', $answer, PDO::PARAM_STR);
         $update->execute();
