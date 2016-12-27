@@ -130,6 +130,7 @@ if ($method === 'GET') {
 
         if ($topic_id == -1) {
             echo json_encode(array("error"=>$errorTypes[1]));
+            exit;
         }
 
         $update = $link->prepare("INSERT INTO faqs(topic_id, question, answer) VALUES (:t_param, :q_param, :a_param)");
