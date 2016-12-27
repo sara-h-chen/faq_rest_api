@@ -28,12 +28,12 @@
 <script type="text/javascript" src="https://l2.io/ip.js?var=myip"></script>
 <script>
     function checkCookie() {
+        window.location.href = "authenticate.php";
+        /* UNCOMMENT FOR MIRA */
+//            window.location.href = "../password/authenticate.php";
         if (document.cookie == false) {
            console.log(getCookie(document.cookie));
             console.log("No cookie found");
-            window.location.href = "authenticate.php";
-            /* UNCOMMENT ON MIRA */
-//            window.location.href = "../password/authenticate.php";
         } else {
             var utc = new Date().toJSON().slice(0, 10);
             console.log("faq2016 " + utc + " " + myip);
