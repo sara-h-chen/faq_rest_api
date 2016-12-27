@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     $result->bindValue(':delete_param', $toDelete, PDO::PARAM_STR);
     $result->execute();
     echo "Deleted";
-    header('Location: ../../admin.html');
+    header('Location: ../admin.html');
 } else if (isset($_GET['topic'])){
     $toDelete = $_GET['topic'];
     var_dump($toDelete);
@@ -27,5 +27,5 @@ if (isset($_GET['id'])) {
     $result = $link->prepare("DELETE FROM topics WHERE topic=(:delete_param)");
     $result->bindValue(':delete_param', $toDelete, PDO::PARAM_STR);
     $result->execute();
-    header('Location: ../../admin.html');
+    header('Location: ../admin.html');
 }

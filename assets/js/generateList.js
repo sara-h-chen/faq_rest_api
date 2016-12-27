@@ -8,7 +8,7 @@ $(document).ready(function() {
      ===============================*/
 
     $.ajax({
-       url: "/topics.php"
+       url:"topics.php"
         /* UNCOMMENT FOR MIRA */
         // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/topics.php"
     }).then(function(data) {
