@@ -29,7 +29,11 @@ $(document).ready(function(){
             url      : $(this).attr('action'),
             data     : $(this).serialize(),
             success  : function(data) {
+                data = JSON.parse(data);
                 console.log("passed");
+                if (data.hasOwnProperty('error')) {
+                    $('[data-remodal-id=FailedModal]').remodal().open();
+                }
                 $('[data-remodal-id=SuccessModal]').remodal().open();
             },
             error    : function(jqXHR, textStatus, errorThrown) {

@@ -16,7 +16,7 @@ if (in_array($_SERVER['REMOTE_USER'],$allowedUsers)) {
     $createToken = hash('sha256', $createToken);
     /* Stores cookies for 15 days */
     setcookie($cookieName, $createToken, time() + (86400 * 15), "/");
-    header('Location: admin.html');
+    header('Location: ../faq2016/admin.html');
 } else {
     header('Location: denied.html');
 };

@@ -98,34 +98,29 @@ if ($method === 'GET') {
 
         /* IF PARAM CONTAINS 'ANSWER' OR 'TOPIC' THEN ALTER THE DB */
     } else {
+
+        /* GENERATE AUTH_TOKEN FOR CHECKING */
+        $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+        //var_dump($checkToken);
+        $checkToken = hash('sha256', $checkToken);
+        //var_dump($checkToken);
+        $givenToken = $_POST["auth_token"];
+        //var_dump($givenToken);
+        $errorTypes = array('not authorised','topic undefined');
+        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+            echo json_encode(array("error"=>$errorTypes[0]));
+            exit;
+        }
+
         $topic = $_POST['topic'];
         $question = $_POST['question'];
         $answer = $_POST['answer'];
         $topic = ucwords(strtolower($topic));
-//        var_dump($topic);
-//        var_dump($question);
-//        var_dump($answer);
 
         /* Get topic IDs */
         $getTopics = $link->query("SELECT * FROM topics");
-        // TODO: Refactor
-        // $itemize = $getTopics->fetchAll(PDO::FETCH_ASSOC);
-        // $output = array($itemize);
-        // var_dump($output);
-        // foreach ($output as $row) {
-        //     var_dump($row);
-        //     foreach ($val as $key => $val2) {
-        //         var_dump($val);
-        //         // var_dump($key);
-        //         // var_dump($val2);
-        //         if ($val == $topic) {
-        //             var_dump($key);
-        //         } else {
-        //             $totalTopics++;
-        //         }
-        //     }
-        // }
 
+        // TODO: Refactor
         $topic_id = -1;
         while($data = $getTopics->fetch( PDO::FETCH_ASSOC )){
             if ($data['topic'] == $topic) {
@@ -134,7 +129,7 @@ if ($method === 'GET') {
         }
 
         if ($topic_id == -1) {
-            throw new Exception('Incorrect topic chosen.');
+            echo json_encode(array("error"=>$errorTypes[1]));
         }
 
         $update = $link->prepare("INSERT INTO faqs(topic_id, question, answer) VALUES (:t_param, :q_param, :a_param)");
@@ -146,35 +141,3 @@ if ($method === 'GET') {
     }
     exit;
 };
-
-//        if (isset($_POST["answer"]) && isset($_POST["topic"])) {
-//// Generate auth_token for checking
-//            $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
-//            //var_dump($checkToken);
-//            $checkToken = hash('sha256', $checkToken);
-//            //var_dump($checkToken);
-//            $givenToken = $_POST["auth_token"];
-//            //var_dump($givenToken);
-//            $errorTypes = array('not authorised','topic undefined');
-//            //var_dump($errorTypes);
-//            if ($givenToken !== $checkToken && $givenToken !== "concertina") {
-//                echo json_encode(array("error"=>$errorTypes[0]));
-//            }
-//
-//            // Check if topic is valid
-//            $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
-//            // Get the list of topics
-//            $result = $link->query("SELECT DISTINCT topic FROM faqs");
-//            $list = $result->fetchAll(PDO::FETCH_COLUMN);
-//            //var_dump($list);
-//            $topic = $_POST["topic"];
-//            if ($topic >= sizeof($list)) {
-//                echo json_encode(array("error"=>$errorTypes[1]));
-//            }
-//
-//        } else {
-//
-//            $receivedData = $_POST["question"];
-//            var_dump($receivedData);
-//
-//        }

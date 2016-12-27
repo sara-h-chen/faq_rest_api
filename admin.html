@@ -22,45 +22,6 @@
 <!-- CUSTOM SCRIPTS -->
 <script src="assets/js/generateList.js"></script>
 <script src="assets/js/admin_consume.js"></script>
-<!-- SHA-ENCODING SCRIPT -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.3.2/sha256.min.js"></script>
-<!-- CLIENT-SIDE AUTHENTICATION -->
-<script type="text/javascript" src="https://l2.io/ip.js?var=myip"></script>
-<script>
-    function checkCookie() {
-        window.location.href = "authenticate.php";
-        /* UNCOMMENT FOR MIRA */
-//            window.location.href = "../password/authenticate.php";
-        if (document.cookie == false) {
-           console.log(getCookie(document.cookie));
-            console.log("No cookie found");
-        } else {
-            var utc = new Date().toJSON().slice(0, 10);
-            console.log("faq2016 " + utc + " " + myip);
-            var sha_encoded = sha256("faq2016 " + utc + " " + myip);
-            console.log(sha_encoded);
-            if ((document.cookie !== "concertina") || (document.cookie !== sha_encoded)) {
-                window.location.href = "denied.html";
-            }
-            console.log(document.cookie);
-            console.log("auth_token has been set by authenticate.php.");
-        }
-    }
-    function getCookie(cookieStored) {
-        var name = cookieStored + "=";
-        var splitCookie = document.cookie.split(";");
-        for (var i=0; i < splitCookie.length; i++) {
-            var c = splitCookie[i];
-            while (c.charAt(0) == '') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-</script>
 
 <!-- LOADING BAR STYLESHEET -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-loading-bar.min.css" rel="stylesheet">
