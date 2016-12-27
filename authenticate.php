@@ -9,7 +9,7 @@
 /* CREATE LIST OF ALLOWED USERS */
 $allowedUsers = array('dcs0spb', 'jrvh15');
 
-if (in_array($_SERVER['REMOTE_USER'],$allowedUsers)) {
+if (in_array($_SERVER['REMOTE_USER'], $allowedUsers)) {
     $cookieName = "auth_token";
     $createToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
     //echo $createToken;
@@ -18,5 +18,5 @@ if (in_array($_SERVER['REMOTE_USER'],$allowedUsers)) {
     setcookie($cookieName, $createToken, time() + (86400 * 15), "/");
     header('Location: ../faq2016/admin.html');
 } else {
-    header('Location: denied.html');
+    header('Location: ../faq2016/denied.html');
 };

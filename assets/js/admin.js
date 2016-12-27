@@ -19,6 +19,9 @@ $(document).ready(function(){
         $('body').animate({
             scrollTop: $(target).offset().top
         }, 300);
+        $('html').animate({
+            scrollTop: $(target).offset().top
+        }, 300);
     });
 
     $('#faqsForm').on('submit',function(e){
