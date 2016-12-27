@@ -107,7 +107,14 @@ if ($method === 'GET') {
         $givenToken = $_POST["auth_token"];
         //var_dump($givenToken);
         $errorTypes = array('not authorised','topic undefined');
-        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+
+        if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
+            /* Redirect browser */
+//            header("Location: authenticate.php");
+            header("Location: ../password/authenticate.php");
+        }
+
+        if ($givenToken !== $checkToken && $givenToken !== "concertina" && empty($_COOKIE['auth_token'])) {
             echo json_encode(array("error"=>$errorTypes[0]));
             exit;
         }

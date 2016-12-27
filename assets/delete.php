@@ -10,6 +10,23 @@ ob_start();
 
 header('Access-Control-Allow-Origin: *');
 
+$checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+$checkToken = hash('sha256', $checkToken);
+$givenToken = $_POST["auth_token"];
+
+if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
+    /* Redirect browser */
+//            header("Location: authenticate.php");
+    header("Location: ../password/authenticate.php");
+}
+
+$errorTypes = array('not authorised');
+
+if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+    echo json_encode(array("error"=>$errorTypes[0]));
+    exit;
+}
+
 $link = new PDO('sqlite:../data/topics.db') or die("Failed to open the database");
 
 if (isset($_GET['id'])) {

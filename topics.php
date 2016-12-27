@@ -28,32 +28,32 @@
 
     } else if ($method === 'POST') {
 
-//        $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
-//        $checkToken = hash('sha256', $checkToken);
-//        $givenToken = $_POST["auth_token"];
-//        if (empty($givenToken) && empty($_COOKIE['authentication'])) {
+        $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+        $checkToken = hash('sha256', $checkToken);
+        $givenToken = $_POST["auth_token"];
+        if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
             /* Redirect browser */
 //            header("Location: authenticate.php");
-//            header("Location: ../password/authenticate.php");
-//
-//            /* Ensures code beneath is not executed */
-//            exit;
-//        }
+            header("Location: ../password/authenticate.php");
+        }
 
-//        $errorTypes = array('not authorised','topic undefined');
-//
-//        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
-//           echo json_encode(array("error"=>$errorTypes[0]));
-//        }
-//
-//        if (empty($_POST['topicSpcfd'])) {
-//            echo json_encode(array("error"=>$errorTypes[1]));
-//        }
+        $errorTypes = array('not authorised','topic undefined');
+
+        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+           echo json_encode(array("error"=>$errorTypes[0]));
+           exit;
+        }
+
+        if (empty($_POST['topic'])) {
+            echo json_encode(array("error"=>$errorTypes[1]));
+            exit;
+        }
+
         $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
 
         $topic = $_POST['topic'];
         $topic = ucwords(strtolower($topic));
-        echo $topic;
+//        echo $topic;
         $update = $link->prepare("INSERT INTO topics(topic) VALUES (:t_param)");
         $update->bindValue(':t_param', $topic, PDO::PARAM_STR);
         $update->execute();
