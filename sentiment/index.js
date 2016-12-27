@@ -5,6 +5,7 @@ var app = express();
 //   res.send('Hello Seattle\n');
 // });
 
+/* SCALES THE SCORES TO THE RANGE -2 TO 2 */
 function mapToRange(sentiment) {
 	if (Math.abs(sentiment) == 5 || Math.abs(sentiment) == 4) {
 		return 2 * Math.sign(sentiment);
@@ -15,6 +16,7 @@ function mapToRange(sentiment) {
 	}
 }
 
+/* PARSES THE WORDS AND THE VALUES FROM THE FILE */
 sentiment_dict = {};
 fs = require('fs')
 fs.readFile('AFINN/AFINN-111.txt', 'utf8', function (err,data) {
@@ -31,6 +33,7 @@ fs.readFile('AFINN/AFINN-111.txt', 'utf8', function (err,data) {
 });
 
 app.get('/sentiment', function(req, res) {
+	// TODO: Set header Content-type
 	res.setHeader('Content-Type', 'text/plain');
 	text = decodeURI(req.query.text);
 	words = text.split(" ");
@@ -45,5 +48,6 @@ app.get('/sentiment', function(req, res) {
 	wrapper.sentiment = total_sentiment;
 	res.send(JSON.stringify(wrapper));
 });
+
 app.listen(8080, "127.0.0.1");
 console.log('Listening on port 8080...');
