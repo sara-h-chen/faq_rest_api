@@ -14,8 +14,7 @@
     //$input = json_decode(file_get_contents('php://input'), true);
 
     header('Access-Control-Allow-Origin: *');
-    // TODO: Uncomment this
-//    header('Content-Type: application/json');
+    header('Content-Type: application/json');
 
     if ($method === 'GET') {
 
@@ -27,6 +26,11 @@
         echo json_encode($output);
 
     } else if ($method === 'POST') {
+
+        $request_body = file_get_contents('php://input');
+        $json = json_decode($request_body);
+        // file_put_contents("Activity.log", $json->topic, FILE_APPEND);
+        // file_put_contents("Activity.log", "|", FILE_APPEND);
 
         $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
         $checkToken = hash('sha256', $checkToken);
@@ -52,12 +56,12 @@
 
         $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
 
-        $topic = $_POST['topic'];
+        $topic = $json->topic;
         $topic = ucwords(strtolower($topic));
 //        echo $topic;
         $update = $link->prepare("INSERT INTO topics(topic) VALUES (:t_param)");
         $update->bindValue(':t_param', $topic, PDO::PARAM_STR);
         $update->execute();
-        echo "Added to DB";
+        echo json_encode("Added to DB");
 
     }
