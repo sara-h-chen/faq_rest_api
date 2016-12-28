@@ -16,8 +16,8 @@ if (in_array(strtolower($_SERVER['REMOTE_USER']), $allowedUsers)) {
     $createToken = hash('sha256', $createToken);
     /* Stores cookies for 15 days */
     setcookie($cookieName, $createToken, time() + (86400 * 15), "/");
-    echo ("Why aren't you working?");
-    //header('Location: ../faq2016/admin.html');
+    //echo ("Why aren't you working?");
+    header('Location: ../faq2016/admin.html');
 } else {
     throw new Error('not authorised');
 };
