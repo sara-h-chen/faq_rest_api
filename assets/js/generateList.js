@@ -63,10 +63,14 @@ $(document).ready(function() {
             url      : $(this).attr('action') + '?auth_token=' + $.cookie("auth_token"),
             data     : blob,
             success  : function(data) {
-                console.log("passed");
-                console.log(data);
-                window.location.reload(true);
-                //$('[data-remodal-id=SuccessModal]').remodal().open();
+                if (data.error == "not authorised") {
+                    $('[data-remodal-id=FailedModal]').remodal().open();
+                } else {
+                    console.log("passed");
+                    console.log(data);
+                    window.location.reload(true);
+                    //$('[data-remodal-id=SuccessModal]').remodal().open();
+                }
             },
             error    : function(jqXHR, textStatus, errorThrown) {
                 console.log("failed");

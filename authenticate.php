@@ -19,5 +19,5 @@ if (in_array(strtolower($_SERVER['REMOTE_USER']), $allowedUsers)) {
     echo ("Why aren't you working?");
     //header('Location: ../faq2016/admin.html');
 } else {
-    throw new Error('Not authorised');
+    throw new Error('not authorised');
 };
