@@ -13,11 +13,12 @@ header('Access-Control-Allow-Origin: *');
 $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
 $checkToken = hash('sha256', $checkToken);
 $givenToken = $_GET["auth_token"];
-var_dump($checkToken);
-var_dump($givenToken);
+//var_dump($checkToken);
+//var_dump($givenToken);
 
 
 if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
+//    echo ("no token given");
     /* Redirect browser */
 //            header("Location: ../authenticate.php");
     header("Location: ../password/authenticate.php");
@@ -26,6 +27,7 @@ if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
 $errorTypes = array('not authorised');
 
 if ($givenToken !== $checkToken && $givenToken !== "concertina") {
+//    echo ("triggered");
     echo json_encode(array("error"=>$errorTypes[0]));
     exit;
 }
@@ -34,18 +36,20 @@ $link = new PDO('sqlite:../data/topics.db') or die("Failed to open the database"
 
 if (isset($_GET['id'])) {
     $toDelete = $_GET['id'];
+//    echo ('from id');
 //    var_dump($toDelete);
     $result = $link->prepare("DELETE FROM questions WHERE id=(:delete_param)");
     $result->bindValue(':delete_param', $toDelete, PDO::PARAM_STR);
     $result->execute();
-    echo "Deleted";
+//    echo "Deleted";
     header('Location: ../admin.html');
 } else if (isset($_GET['topic'])){
     $toDelete = $_GET['topic'];
-    var_dump($toDelete);
+//    var_dump($toDelete);
     $toDelete = ucwords(strtolower($toDelete));
     $result = $link->prepare("DELETE FROM topics WHERE topic=(:delete_param)");
     $result->bindValue(':delete_param', $toDelete, PDO::PARAM_STR);
     $result->execute();
     header('Location: ../admin.html');
+//    echo "Delete topic";
 }

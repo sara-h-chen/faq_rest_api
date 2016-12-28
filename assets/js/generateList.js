@@ -56,16 +56,17 @@ $(document).ready(function() {
         // a = $(this).serialize();
         blob = {};
         $(this).serializeArray().map(function(x){blob[x.name] = x.value;});
-        console.log(blob);
+	console.log(blob);
         $.ajax({
             type     : "POST",
             cache    : false,
-            url      : $(this).attr('action'),
+            url      : $(this).attr('action') + '?auth_token=' + $.cookie("auth_token"),
             data     : blob,
             success  : function(data) {
                 console.log("passed");
                 console.log(data);
-                $('[data-remodal-id=SuccessModal]').remodal().open();
+                window.location.reload(true);
+                //$('[data-remodal-id=SuccessModal]').remodal().open();
             },
             error    : function(jqXHR, textStatus, errorThrown) {
                 console.log("failed");
