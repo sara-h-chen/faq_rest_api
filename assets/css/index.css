@@ -170,7 +170,6 @@ TOPICS SECTION STYLES
 
 }
 
-
 /*===========================================
 BACKGROUND STYLING
  ============================================*/
@@ -190,7 +189,6 @@ canvas {
     width: 100%;
     overflow: hidden;
 }
-
 
 /*===========================================
 POPUP STYLING
@@ -220,7 +218,7 @@ SEARCHBAR STYLING
     position: relative;
 }
 
-.dark input#quicksearch{
+.dark input #quicksearch{
     width: 300px;
     height: 30px;
     background: #2b303b;
