@@ -72,17 +72,17 @@ $(document).ready(function() {
             return false;
         });
 
-        var $quicksearch = $('#quicksearch').keyup(debounce(function () {
-                qsRegex = new RegExp($quicksearch.val(), 'gi');
-                $container.isotope({
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear',
-                        queue: false
-                    }
-                });
-            })
-        );
+        function searchFilter() {
+            qsRegex = new RegExp($quicksearch.val(), 'gi');
+            $container.isotope({
+                filter: function () {
+                    return qsRegex ? $(this).text().match(qsRegex) : true;
+                }
+            });
+        }
+
+        // use value of search field to filter
+        var $quicksearch = $('#quicksearch').keyup(debounce(searchFilter));
 
         // Debouncing stops filtering from happening every millisecond
         function debounce(fn, threshold) {
