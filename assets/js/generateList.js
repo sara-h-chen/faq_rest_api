@@ -42,7 +42,7 @@ $(document).ready(function() {
         for (var i=0; i < content.length; i++) {
             // console.log(content[i]);
             var box = document.createElement('tr');
-            box.innerHTML = '<td>' + content[i] + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?id=' + (i+1) + '&auth_token=' + $.cookie("auth_token") + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
+            box.innerHTML = '<td>' + content[i].question + '</td><td class="delete-row"><a class="btn btn-danger" href="assets/delete.php?id=' + content[i].id + '&auth_token=' + $.cookie("auth_token") + '"><span class="glyphicon glyphicon-remove"></span>Delete</a></td>';
             document.getElementById('open_tickets').appendChild(box);
         }
     });
