@@ -36,7 +36,7 @@
         $checkToken = hash('sha256', $checkToken);
         $givenToken = $_GET["auth_token"];
 	
-	if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
+	if (($givenToken == 'undefined') && empty($_COOKIE['auth_token'])) {
             /* Redirect browser */
 //            header("Location: ../authenticate.php");
             header("Location: ../password/authenticate.php");
@@ -49,7 +49,7 @@
            exit;
         }
 
-        if (empty($_POST['topic'])) {
+        if (empty($json->topic)) {
             echo json_encode(array("error"=>$errorTypes[1]));
             exit;
         }
