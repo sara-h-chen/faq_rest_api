@@ -31,9 +31,18 @@ $(document).ready(function() {
 
     })
     .then(function() {
+        // Regex for search bar
+        var qsRegex;
+        var buttonFilter;
+
         var $container = $('#topics-div');
         $container.isotope({
-            filter: '*',
+            filter: function () {
+                var $this = $(this);
+                var searchResult = qsRegex ? $this.text().match(qsRegex) : true;
+                var buttonResult = buttonFilter ? $this.is(buttonFilter) : true;
+                return searchResult && buttonResult;
+            },
             animationOptions: {
                 duration: 750,
                 easing: 'linear',
@@ -62,6 +71,33 @@ $(document).ready(function() {
             }
             return false;
         });
-    });
 
+        var $quicksearch = $('#quicksearch').keyup(debounce(function () {
+                qsRegex = new RegExp($quicksearch.val(), 'gi');
+                $container.isotope({
+                    animationOptions: {
+                        duration: 750,
+                        easing: 'linear',
+                        queue: false
+                    }
+                });
+            })
+        );
+
+        // Debouncing stops filtering from happening every millisecond
+        function debounce(fn, threshold) {
+            var timeout;
+            return function debounced() {
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+                function delayed() {
+                    fn();
+                    timeout = null;
+                }
+
+                setTimeout(delayed, threshold || 100);
+            };
+        };
+    });
 });
