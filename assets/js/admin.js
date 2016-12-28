@@ -26,14 +26,17 @@ $(document).ready(function(){
 
     $('#faqsForm').on('submit',function(e){
         e.preventDefault();
+        blob = {};
+        $(this).serializeArray().map(function(x){blob[x.name] = x.value;});
         $.ajax({
             type     : "POST",
             cache    : false,
+            contentType: "application/json",
             url      : $(this).attr('action'),
-            data     : $(this).serialize(),
+            data     : JSON.stringify(blob),
             success  : function(data) {
-                data = JSON.parse(data);
                 console.log("passed");
+                console.log(data);
                 if (data.hasOwnProperty('error')) {
                     $('[data-remodal-id=AccessDenied]').remodal().open();
                 }

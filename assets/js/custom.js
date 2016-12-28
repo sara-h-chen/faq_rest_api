@@ -5,15 +5,18 @@ $(document).ready(function () {
      ======================================*/
 
     $('#form-button').click(function () {
-        var forSubmission = $('#questiontext');
-        var serialized = forSubmission.serialize();
-        var formURL = $('#question').attr("action");
+        blob = {};
+        $('#questiontext').serializeArray().map(function(x){blob[x.name] = x.value;});
         $.ajax({
-            url: formURL,
-            type: "POST",
-            data: serialized,
-            success: function (textStatus, jqXHR) {
+            type     : "POST",
+            cache    : false,
+            contentType: "application/json",
+            url: $('#question').attr("action"),
+            data: JSON.stringify(blob),
+            dataType: "json",
+            success: function (data) {
                 console.log("passed");
+                console.log(data);
                 $('[data-remodal-id=SuccessModal]').remodal().open();
             },
             error: function(jqXHR, textStatus, errorThrown) {

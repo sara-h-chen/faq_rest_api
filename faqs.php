@@ -14,12 +14,12 @@ ob_start();
 $method = $_SERVER['REQUEST_METHOD'];
 
 header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
 
 $link = new PDO('sqlite:./data/topics.db') or die("Failed to open the database");
 
 /* Deal with GET requests */
 if ($method === 'GET') {
-    header('Content-Type: application/json');
 
     /* Get the list of topics */
     $result = $link->query("SELECT DISTINCT topic FROM topics");
@@ -87,13 +87,21 @@ if ($method === 'GET') {
     /* QUESTIONS CAN BE SUBMITTED BY ANYBODY AND WILL BE SAVED TO AN ALTERNATIVE TABLE IN DB */
 } else if ($method === 'POST') {
 
+    $request_body = file_get_contents('php://input');
+    $json = json_decode($request_body);
+    file_put_contents("Activity.log", $json->question, FILE_APPEND);
+    file_put_contents("Activity.log", "|", FILE_APPEND);
+
     /* IF PARAM ONLY CONTAINS THE VALUE 'QUESTION' THEN SKIP THE AUTHENTICATION */
-    if (!isset($_POST["answer"]) && (!isset($_POST["topic"]))) {
-        if (isset($_POST['question']) && !empty($_POST['question'])) {
-            $var = $_POST['question'];
+    if (!isset($json->answer) && (!isset($json->topic))) {
+        if (isset($json->question) && !empty($json->question)) {
+            $var = $json->question;
+            echo json_encode("value");
             $update = $link->prepare("INSERT INTO questions(question) VALUES (:param)");
             $update->bindValue(':param', $var, PDO::PARAM_STR);
             $update->execute();
+        } else {
+            echo json_encode("{}");
         }
 
         /* IF PARAM CONTAINS 'ANSWER' OR 'TOPIC' THEN ALTER THE DB */
@@ -119,9 +127,9 @@ if ($method === 'GET') {
             exit;
         }
 
-        $topic = $_POST['topic'];
-        $question = $_POST['question'];
-        $answer = $_POST['answer'];
+        $topic = $json->topic;
+        $question = $json->question;
+        $answer = $json->answer;
         $topic = ucwords(strtolower($topic));
 
         /* Get topic IDs */
@@ -145,7 +153,7 @@ if ($method === 'GET') {
         $update->bindValue(':q_param', $question, PDO::PARAM_STR);
         $update->bindValue(':a_param', $answer, PDO::PARAM_STR);
         $update->execute();
-        echo "Added to DB";
+        echo json_encode("Added to DB");
     }
     exit;
 };

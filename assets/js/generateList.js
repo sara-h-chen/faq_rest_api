@@ -8,13 +8,12 @@ $(document).ready(function() {
      ===============================*/
 
     $.ajax({
-       url:"topics.php"
+       url:"topics.php",
+       contentType: "application/json"
         /* UNCOMMENT FOR MIRA */
         // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/topics.php"
     }).then(function(data) {
-        data = JSON.parse(data);
         var content = data.topics;
-        // console.log(content);
 
         /* ADDS TO DROPDOWN */
         $.each(content, function (i, item) {
@@ -33,12 +32,12 @@ $(document).ready(function() {
     });
 
     $.ajax({
-        url: "assets/queryscript.php"
+        url: "assets/queryscript.php",
+        contentType: "application/json"
         /* UNCOMMENT FOR MIRA */
         // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/assets/queryscript.php"
     }).then(function(data) {
         var content = data.open_tickets;
-        console.log(content);
         for (var i=0; i < content.length; i++) {
             // console.log(content[i]);
             var box = document.createElement('tr');
@@ -53,21 +52,22 @@ $(document).ready(function() {
 
     $('#addTopic').on('submit',function(e){
         e.preventDefault();
-        // a = $(this).serialize();
         blob = {};
         $(this).serializeArray().map(function(x){blob[x.name] = x.value;});
-	console.log(blob);
         $.ajax({
             type     : "POST",
             cache    : false,
+            contentType: "application/json",
             url      : $(this).attr('action') + '?auth_token=' + $.cookie("auth_token"),
-            data     : blob,
+            data     : JSON.stringify(blob),
+            dataType : "json",
             success  : function(data) {
                 if (data.error == "not authorised") {
                     $('[data-remodal-id=FailedModal]').remodal().open();
-                } else {
+                }
+                else {
                     console.log("passed");
-                    console.log(data);
+                    console.log(data);  
                     window.location.reload(true);
                     //$('[data-remodal-id=SuccessModal]').remodal().open();
                 }
