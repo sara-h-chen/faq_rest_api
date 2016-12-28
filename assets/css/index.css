@@ -218,7 +218,7 @@ SEARCHBAR STYLING
     position: relative;
 }
 
-.dark input #quicksearch{
+.dark #quicksearch{
     width: 300px;
     height: 30px;
     background: #2b303b;
@@ -241,7 +241,7 @@ SEARCHBAR STYLING
 .dark .icon{
     position: absolute;
     top: 50%;
-    margin-left: 17px;
+    margin-left: 8px;
     margin-top: 3px;
     z-index: 1;
     color: #4f5b66;
