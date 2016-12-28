@@ -9,7 +9,7 @@
 /* CREATE LIST OF ALLOWED USERS */
 $allowedUsers = array('dcs0spb', 'jrvh15');
 
-if (in_array($_SERVER['REMOTE_USER'], $allowedUsers)) {
+if (in_array(($_SERVER['REMOTE_USER']).toLowerCase(), $allowedUsers)) {
     $cookieName = "auth_token";
     $createToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
     //echo $createToken;
