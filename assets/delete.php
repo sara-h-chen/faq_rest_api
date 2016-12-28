@@ -12,14 +12,14 @@ header('Access-Control-Allow-Origin: *');
 
 $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
 $checkToken = hash('sha256', $checkToken);
-$givenToken = $_POST["auth_token"];
+$givenToken = $_GET["auth_token"];
 var_dump($checkToken);
 var_dump($givenToken);
 
 
 if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
     /* Redirect browser */
-//            header("Location: authenticate.php");
+//            header("Location: ../authenticate.php");
     header("Location: ../password/authenticate.php");
 }
 

@@ -104,13 +104,13 @@ if ($method === 'GET') {
         //var_dump($checkToken);
         $checkToken = hash('sha256', $checkToken);
         //var_dump($checkToken);
-        $givenToken = $_POST["auth_token"];
+        $givenToken = $_GET["auth_token"];
         //var_dump($givenToken);
         $errorTypes = array('not authorised','topic undefined');
 
         if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
             /* Redirect browser */
-//            header("Location: authenticate.php");
+//            header("Location: ../authenticate.php");
             header("Location: ../password/authenticate.php");
         }
 

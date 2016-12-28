@@ -61,7 +61,7 @@ $(document).ready(function() {
             type     : "POST",
             cache    : false,
             url      : $(this).attr('action'),
-            data     : blob + '&' + $.cookie("auth_token"),
+            data     : blob,
             success  : function(data) {
                 console.log("passed");
                 console.log(data);

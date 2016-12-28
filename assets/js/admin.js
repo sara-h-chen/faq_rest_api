@@ -30,12 +30,12 @@ $(document).ready(function(){
             type     : "POST",
             cache    : false,
             url      : $(this).attr('action'),
-            data     : $(this).serialize() + '&' + $.cookie("auth_token"),
+            data     : $(this).serialize(),
             success  : function(data) {
                 data = JSON.parse(data);
                 console.log("passed");
                 if (data.hasOwnProperty('error')) {
-                    $('[data-remodal-id=FailedModal]').remodal().open();
+                    $('[data-remodal-id=AccessDenied]').remodal().open();
                 }
                 $('[data-remodal-id=SuccessModal]').remodal().open();
             },
