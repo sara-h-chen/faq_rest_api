@@ -37,9 +37,6 @@ if ($method === 'GET') {
         $output = array('faqs'=>$itemize);
         echo json_encode($output);
 
-        // TODO:
-        // exit;
-
     } else if (isset($topic) && !isset($q)) {
         /* Find index of topic */
         foreach ($topicList as $row) {
@@ -65,23 +62,13 @@ if ($method === 'GET') {
     } else {
         /* Full text search */
         $q = preg_replace($ignoredWords, "", $q);
-        $result = $link->prepare("SELECT topics.topic, faqs.question, faqs.answer FROM faqs INNER JOIN topics ON faqs.topic_id = topics.id WHERE topics.topic LIKE :param OR faqs.answer LIKE :param OR faqs.question LIKE :param");
-        $result->bindValue(':param', '%' . $q . '%', PDO::PARAM_STR);
+        $result = $link->prepare("SELECT question, answer FROM faqs WHERE topic_id=:t_param AND (question LIKE :q_param)");
+        $result->bindValue(':t_param', $topic, PDO::PARAM_STR);
+        $result->bindValue(':q_param', '%' . $q . '%', PDO::PARAM_STR);
         $result->execute();
         $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
-
-        /* Get index of topic */
-        foreach ($topicList as $row) {
-            $topic = $row[$topic];
-        }
-        /* Break up the array; find the 'topic' field for comparison */
-        foreach ($itemize as $val) {
-            foreach ($val as $key2 => $val2) {
-                if ($val2 == $topic) {
-                    echo json_encode($val);
-                }
-            }
-        }
+        $output = array('faqs'=>$itemize);
+        echo json_encode($output);
     }
     /* AUTHENTICATE WITH AUTH_TOKEN WHEN TRYING TO UPDATE TABLE IN DB CONTAINING SITE CONTENT */
     /* QUESTIONS CAN BE SUBMITTED BY ANYBODY AND WILL BE SAVED TO AN ALTERNATIVE TABLE IN DB */

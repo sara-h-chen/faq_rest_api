@@ -8,8 +8,8 @@ $(document).ready(function() {
      ===============================*/
 
     $.ajax({
-       url:"topics.php",
-       contentType: "application/json"
+        url:"topics.php",
+        contentType: "application/json"
         /* UNCOMMENT FOR MIRA */
         // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/topics.php"
     }).then(function(data) {
@@ -47,8 +47,8 @@ $(document).ready(function() {
     });
 
     /*================================
-      SUBMIT TOPIC TO DATABASE
-      ==============================*/
+     SUBMIT TOPIC TO DATABASE
+     ==============================*/
 
     $('#addTopic').on('submit',function(e){
         e.preventDefault();
@@ -67,7 +67,7 @@ $(document).ready(function() {
                 }
                 else {
                     console.log("passed");
-                    console.log(data);  
+                    console.log(data);
                     window.location.reload(true);
                     //$('[data-remodal-id=SuccessModal]').remodal().open();
                 }

@@ -5,8 +5,10 @@ $(document).ready(function () {
      ======================================*/
 
     $('#form-button').click(function () {
+        console.log('haha');
         blob = {};
         $('#questiontext').serializeArray().map(function(x){blob[x.name] = x.value;});
+        $('#questiontext').val("");
         $.ajax({
             type     : "POST",
             cache    : false,
@@ -25,6 +27,13 @@ $(document).ready(function () {
                 $('[data-remodal-id=FailedModal]').remodal().open();
             }
         });
+    });
+
+    $("#questiontext").keypress(function (e) {
+        if(e.which == 13) {
+            e.preventDefault();
+            $("#form-button")[0].click();
+        }
     });
 
 
