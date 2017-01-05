@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.ajax({
-        url: "faqs.php"
+        url: "http://localhost:8000/faqs.php"
         /* UNCOMMENT FOR MIRA */
         // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/faqs.php"
     }).then(function(data) {
@@ -22,7 +22,7 @@ $(document).ready(function() {
            } else {
                var container = document.createElement('a');
                topics.push(data.faqs[i].topic);
-               container.innerHTML = '<a href="#" data-filter=".' + data.faqs[i].topic.toLowerCase() + '" class="btn btn-custom btn-custom-two btn-sm">' + data.faqs[i].topic + '</a>';
+               container.innerHTML = '<a href="#" data-topic=' + data.faqs[i].id + ' data-filter=".' + data.faqs[i].topic.toLowerCase() + '" class="btn btn-custom btn-custom-two btn-sm">' + data.faqs[i].topic + '</a>';
                document.getElementById("listOfTopics").appendChild(container);
            }
 
@@ -31,7 +31,7 @@ $(document).ready(function() {
 
     })
     .then(function() {
-        // Regex for search bar
+        /* REGEX FOR SEARCH BAR */
         var qsRegex;
         var buttonFilter;
 
@@ -51,7 +51,9 @@ $(document).ready(function() {
         });
         $container.css({top: 100})
 
+        active_class_id = undefined;
         $('.categories a').click(function () {
+            active_class_id = $(this).attr("data-topic");
             $('.categories .active').removeClass('active');
             $(this).addClass('active');
             var selector = $(this).attr('data-filter');
@@ -66,8 +68,10 @@ $(document).ready(function() {
             $container.css({top: 100})
             if ($("#all_topics").hasClass('active')) {
                 $("#hidden-button").hide(300);
+                $('#navbar').hide(300);
             } else if (!$("#hidden-button").is(":visible")) {
                 $("#hidden-button").show(300);
+                $('#navbar').show(300);
             }
             return false;
         });
@@ -81,23 +85,40 @@ $(document).ready(function() {
             });
         }
 
-        // use value of search field to filter
-        var $quicksearch = $('#quicksearch').keyup(debounce(searchFilter));
-
-        // Debouncing stops filtering from happening every millisecond
-        function debounce(fn, threshold) {
-            var timeout;
-            return function debounced() {
-                if (timeout) {
-                    clearTimeout(timeout);
-                }
-                function delayed() {
-                    fn();
-                    timeout = null;
-                }
-
-                setTimeout(delayed, threshold || 100);
-            };
-        };
+        /* USE VALUE OF SEARCH FIELD TO FILTER */
+        var $quicksearch = $('#quicksearch').keypress(function (e) {
+            if (e.which == 13) {
+                searchFilter();
+                text = $(this).val();
+                topic = active_class_id;
+                $.ajax({
+                    url: "/search?text=" + text + "&topic=" + topic,
+                    success: function (data) {
+                        document.getElementById("tweets-div").innerHTML = "";
+                        positive = data.tweets.positive;
+                        negative = data.tweets.negative;
+                        console.log(data.tweets);
+                        for (var i = 0; i < positive.length; i++) {
+                            /* FETCH TWEET SECTION */
+                            var box = document.createElement('div');
+                            box.className += "col-xs-12 col-sm-4 col-md-4 col-lg-4 "
+                            box.innerHTML = '<div class="topic-wrapper"><h4> ' + positive[i].text + '</h4><h5>Sentiment: '+ positive[i].sentiment + '</h5></div>';
+                            document.getElementById("tweets-div").appendChild(box);
+                        }   
+                        for (var i = 0; i < negative.length; i++) {
+                            /* FETCH TWEET SECTION */
+                            var box = document.createElement('div');
+                            box.className += "col-xs-12 col-sm-4 col-md-4 col-lg-4 "
+                            box.innerHTML = '<div class="topic-wrapper"><h4> ' + negative[i].text + '</h4><h5>Sentiment: '+ negative[i].sentiment + '</h5></div>';
+                            document.getElementById("tweets-div").appendChild(box);
+                        }  
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log("failed");
+                        console.log(textStatus + ": " + errorThrown);
+                    }
+                });
+            }
+        });
     });
 });

@@ -254,3 +254,14 @@ SEARCHBAR STYLING
 .icon-bar {
     background-color: black !important;
 }
+
+/*===========================================
+TWEET SECTION STYLING
+ ============================================*/
+#tweets-div h5 {
+    color: cornflowerblue;
+}
+
+#tweets-div h4 {
+    color: blue;
+}

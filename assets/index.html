@@ -13,9 +13,9 @@
 <!-- CORE JQUERY -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<script src="assets/js/waterpipe.js"></script>
-<script src="assets/js/custom.js"></script>
-<script src="assets/js/consume.js"></script>
+<script src="js/waterpipe.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/consume.js"></script>
 
 <!-- ICONS CSS -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -28,13 +28,25 @@
 <!-- STYLES FOR VIEWPORT ANIMATION -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animations/2.1/css/animations.min.css" rel="stylesheet" />
 <!-- CUSTOM CSS -->
-<link href="assets/css/index.css" rel="stylesheet" />
+<link href="css/index.css" rel="stylesheet" />
 <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+<script>
+url = window.location.href;
+if (url.indexOf("/index.html") == -1) {
+    params = url.split("?")[1];
+    if (params) {
+        window.location = "/search?" + params;
+    } else {
+        window.location = "/search";
+    }
+}
+</script>
 
 </head>
 <body>
@@ -48,7 +60,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="admin.html" style="font-size: small; position: absolute; z-index: 300;">Login (Admin Only)</a>
+            <a class="navbar-brand" href="http://localhost:8000/admin.html" style="font-size: small; position: absolute; z-index: 300;">Login (Admin Only)</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -95,6 +107,22 @@
 </div>
 <!-- END OF SECTION -->
 
+<!-- TWEETS SECTION BEGIN -->
+<div class="container" style="z-index: 20; top: 550px; position: relative;">
+    <div class="row text-center animate-in" data-anim-type="fade-in-up" >
+        <!-- GENERATE TWEETS HERE -->
+        <div class="row text-center animate-in" data-anim-type="fade-in-up" id="tweets-div">
+        <!-- DIV TEMPLATE -->
+         <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 INSERT_CATEGORY HERE">-->
+         <!--<div class="topic-wrapper">-->
+         <!--<h4> TWEET HERE </h4>-->
+         <!--</div>-->
+         <!--</div>-->
+        </div>
+    </div>
+</div>
+<!-- END OF SECTION -->
+
 <!-- BUTTON FOR FORM THAT APPEARS ONCE A TOPIC HAS BEEN SELECTED -->
 <div id="hidden-button" class="col-xs-6 col-xs-6 col-xs-6 remodal-bg" style="display: none;">
     <div class="row text-center">
@@ -103,7 +131,7 @@
     <!-- POPUP FORM -->
     <div class="remodal" data-remodal-id="modal">
     <button data-remodal-action="close" class="remodal-close"></button>
-        <form name="question" id="question" class="question" method="POST" action="faqs.php" enctype="application/x-www-form-urlencoded">
+        <form name="question" id="question" class="question" method="POST" action="http://localhost:8000/faqs.php" enctype="application/x-www-form-urlencoded">
             <label for="question">
                 <span>Thanks for sending in your question!</span>
             </label>

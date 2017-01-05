@@ -28,11 +28,14 @@ if ($method === 'GET') {
 
     $topic = $_GET['topic'];
     $q = $_GET['q'];
+//    echo json_encode($q);
+//    exit();
+
     $ignoredWords = array('/\bif\b/i', '/\bthe\b/i', '/\bhas\b/i', '/\bthat\b/i', '/\bfor\b/i', '/\bor\b/i', '/\bwas\b/i', '/\bare\b/i', '/\ba\b/i', '/\bto\b/i');
 
     if (!isset($topic) && !isset($q)) {
         /* Return unfiltered data */
-        $result = $link->query("SELECT topics.topic, faqs.question, faqs.answer FROM faqs INNER JOIN topics ON faqs.topic_id = topics.id;");
+        $result = $link->query("SELECT topics.id, topics.topic, faqs.question, faqs.answer FROM faqs INNER JOIN topics ON faqs.topic_id = topics.id;");
         $itemize = $result->fetchAll(PDO::FETCH_ASSOC);
         $output = array('faqs'=>$itemize);
         echo json_encode($output);
@@ -62,7 +65,7 @@ if ($method === 'GET') {
     } else {
         /* Full text search */
         $q = preg_replace($ignoredWords, "", $q);
-        $result = $link->prepare("SELECT question, answer FROM faqs WHERE topic_id=:t_param AND (question LIKE :q_param)");
+        $result = $link->prepare("SELECT question, answer FROM faqs WHERE topic_id=:t_param AND (question LIKE :q_param OR answer LIKE :q_param)");
         $result->bindValue(':t_param', $topic, PDO::PARAM_STR);
         $result->bindValue(':q_param', '%' . $q . '%', PDO::PARAM_STR);
         $result->execute();
