@@ -11,9 +11,9 @@ var client = new Twitter({
   bearer_token: 'AAAAAAAAAAAAAAAAAAAAAJ1gygAAAAAAQ3YbD65%2FI4n3jwhnzkubEqO12Lo%3Dh6Pgp0LHSyhEbvVEhnTEonz0lE18SfBFA429zduumxOhnURsKV'
 });
 
-app.use(express.static('assets'));
+app.use(express.static('assets', {index: false}));
 
-app.get('/search', function(req, res) {
+app.get('/', function(req, res) {
 	topic = req.query.topic;
 	if (topic == undefined) {
 		res.send("Topic requried");
@@ -71,7 +71,9 @@ app.get('/twitter', function(req, res) {
 		res.send("Text requried");
 		return;
 	}
-	text = decodeURI(req.query.text);
+
+	text = req.query.text;
+	// text = decodeURI(req.query.text);
 
 	var params = {q: text, count: 20, result_type: "popular"};
 	client.get('search/tweets', params)
@@ -149,7 +151,8 @@ fs.readFile('sentiment/AFINN/AFINN-111.txt', 'utf8', function (err,data) {
 });
 
 app.get('/sentiment', function(req, res) {
-	text = decodeURI(req.query.text);
+	// text = decodeURI(req.query.text);
+    text = req.query.text;
 	words = text.split(" ");
 	total_sentiment = 0;
 	for (index in words) {

@@ -92,7 +92,7 @@ $(document).ready(function() {
                 text = $(this).val();
                 topic = active_class_id;
                 $.ajax({
-                    url: "/search?text=" + text + "&topic=" + topic,
+                    url: "/?text=" + text + "&topic=" + topic,
                     success: function (data) {
                         document.getElementById("tweets-div").innerHTML = "";
                         positive = data.tweets.positive;
