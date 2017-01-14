@@ -25,9 +25,9 @@ app.get('/', function(req, res) {
 	request1 = function() {
 		return function(callback) {
 			if (text != undefined) {
-				request_url = "http://localhost:8000/faqs.php?topic=" + topic_id + "&q=" + text;
+				request_url = "http://community.dur.ac.uk/sara.h.chen/faq2016/faqs.php?topic=" + topic_id + "&q=" + text;
 			} else {
-				request_url = "http://localhost:8000/faqs.php?topic=" + topic_id;
+				request_url = "http://community.dur.ac.uk/sara.h.chen/faq2016/faqs.php?topic=" + topic_id;
 			}
 			request(request_url, function(err, response, body) {
 				if(err) { console.log(err); callback(true); return; }

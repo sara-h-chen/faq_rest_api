@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $.ajax({
-        url: "http://localhost:8000/faqs.php"
+        // url: "http://localhost:8000/faqs.php"
         /* UNCOMMENT FOR MIRA */
-        // url: "http://community.dur.ac.uk/sara.h.chen/faq2016/faqs.php"
+        url: "http://community.dur.ac.uk/sara.h.chen/faq2016/faqs.php"
     }).then(function(data) {
         var content = data.faqs;
         /* CREATE ID FOR FILTERING TOPICS */
