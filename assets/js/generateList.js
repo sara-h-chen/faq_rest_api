@@ -46,4 +46,38 @@ $(document).ready(function() {
         }
     });
 
+    /*================================
+     SUBMIT TOPIC TO DATABASE
+     ==============================*/
+
+    $('#addTopic').on('submit',function(e){
+        e.preventDefault();
+        blob = {};
+        $(this).serializeArray().map(function(x){blob[x.name] = x.value;});
+        $.ajax({
+            type     : "POST",
+            cache    : false,
+            contentType: "application/json",
+            url      : $(this).attr('action') + '?auth_token=' + $.cookie("auth_token"),
+            data     : JSON.stringify(blob),
+            dataType : "json",
+            success  : function(data) {
+                if (data.error == "not authorised") {
+                    $('[data-remodal-id=FailedModal]').remodal().open();
+                }
+                else {
+                    console.log("passed");
+                    console.log(data);
+                    window.location.reload(true);
+                    //$('[data-remodal-id=SuccessModal]').remodal().open();
+                }
+            },
+            error    : function(jqXHR, textStatus, errorThrown) {
+                console.log("failed");
+                console.log(textStatus + ": " + errorThrown);
+                $('[data-remodal-id=FailedModal]').remodal().open();
+            }
+        });
+    });
+
 });

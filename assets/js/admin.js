@@ -24,80 +24,23 @@ $(document).ready(function(){
         }, 300);
     });
 
-    /*================================
-     SUBMIT FAQ TO DATABASE
-     ==============================*/
-
     $('#faqsForm').on('submit',function(e){
         e.preventDefault();
         blob = {};
         $(this).serializeArray().map(function(x){blob[x.name] = x.value;});
-        if ($.cookie("auth_token") == undefined) {
-            current_url = $(this).attr('action');
-        } else {
-            current_url = $(this).attr('action') + '?auth_token=' + $.cookie("auth_token");
-        }
         $.ajax({
             type     : "POST",
             cache    : false,
             contentType: "application/json",
-            url      : current_url,
+            url      : $(this).attr('action'),
             data     : JSON.stringify(blob),
-            dataType : "json",
             success  : function(data) {
                 console.log("passed");
                 console.log(data);
-                if (data.error == "not authorised") {
-                    $('[data-remodal-id=AccessDeniedModal]').remodal().open();
-                } else if (data.success == "authorised") {
-                    $('#faqButton')[0].click();
-                } else {
-                    console.log("passed");
-                    console.log(data);
-                    window.location.reload(true);
+                if (data.hasOwnProperty('error')) {
+                    $('[data-remodal-id=AccessDenied]').remodal().open();
                 }
-            },
-            error    : function(jqXHR, textStatus, errorThrown) {
-                console.log("failed");
-                console.log(textStatus + ": " + errorThrown);
-                $('[data-remodal-id=FailedModal]').remodal().open();
-            }
-        });
-    });
-
-    /*================================
-     SUBMIT TOPIC TO DATABASE
-     ==============================*/
-
-    $('#addTopic').on('submit',function(e){
-        e.preventDefault();
-        blob = {};
-        $(this).serializeArray().map(function(x){blob[x.name] = x.value;});
-        if ($.cookie("auth_token") == undefined) {
-            current_url = $(this).attr('action');
-        } else {
-            current_url = $(this).attr('action') + '?auth_token=' + $.cookie("auth_token");
-        }
-        $.ajax({
-            type     : "POST",
-            cache    : false,
-            contentType: "application/json",
-            url      : current_url,
-            data     : JSON.stringify(blob),
-            dataType : "json",
-            success  : function(data) {
-                console.log("passed");
-                console.log(data);
-                if (data.error == "not authorised") {
-                    $('[data-remodal-id=AccessDeniedModal]').remodal().open();
-                } else if (data.success == "authorised") {
-                    $('#add')[0].click();
-                } else {
-                    console.log("passed");
-                    console.log(data);
-                    window.location.reload(true);
-                    //$('[data-remodal-id=SuccessModal]').remodal().open();
-                }
+                $('[data-remodal-id=SuccessModal]').remodal().open();
             },
             error    : function(jqXHR, textStatus, errorThrown) {
                 console.log("failed");
@@ -218,4 +161,3 @@ function debounce(func, wait, immediate) {
 		if (immediate && !timeout) func.apply(context, args);
 	};
 };
-

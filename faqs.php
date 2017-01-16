@@ -91,22 +91,27 @@ if ($method === 'GET') {
             echo json_encode("{}");
         }
 
-    /* IF PARAM CONTAINS 'ANSWER' OR 'TOPIC' THEN ALTER THE DB */
+        /* IF PARAM CONTAINS 'ANSWER' OR 'TOPIC' THEN ALTER THE DB */
     } else {
 
         /* GENERATE AUTH_TOKEN FOR CHECKING */
         $checkToken = "faq2016 " . date("Y-m-d") . " " . $_SERVER['REMOTE_ADDR'];
+        //var_dump($checkToken);
         $checkToken = hash('sha256', $checkToken);
+        //var_dump($checkToken);
         $givenToken = $_GET["auth_token"];
+        //var_dump($givenToken);
         $errorTypes = array('not authorised','topic undefined');
 
-        if (empty($givenToken)) {
+        if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
             /* Redirect browser */
+//            header("Location: ../authenticate.php");
             header("Location: ../password/authenticate.php");
         }
 
-        if ($givenToken !== $checkToken && $givenToken !== "concertina") {
-            header("Location: ../password/authenticate.php");
+        if ($givenToken !== $checkToken && $givenToken !== "concertina" && empty($_COOKIE['auth_token'])) {
+            echo json_encode(array("error"=>$errorTypes[0]));
+            exit;
         }
 
         $topic = $json->topic;
