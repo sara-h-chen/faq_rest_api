@@ -36,20 +36,18 @@ if ($method === 'GET') {
     $checkToken = hash('sha256', $checkToken);
     $givenToken = $_GET["auth_token"];
 
-    if (empty($givenToken) && empty($_COOKIE['auth_token'])) {
+    if (empty($givenToken)) {
         /* Redirect browser */
-//            header("Location: ../authenticate.php");
         header("Location: ../password/authenticate.php");
     }
 
     $errorTypes = array('not authorised','topic undefined');
 
     if ($givenToken !== $checkToken && $givenToken !== "concertina") {
-        echo json_encode(array("error"=>$errorTypes[0]));
-        exit;
+        header("Location: ../password/authenticate.php");
     }
 
-    if (empty($_POST['topic'])) {
+    if (empty($json->topic)) {
         echo json_encode(array("error"=>$errorTypes[1]));
         exit;
     }
