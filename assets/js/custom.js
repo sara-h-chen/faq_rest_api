@@ -5,7 +5,6 @@ $(document).ready(function () {
      ======================================*/
 
     $('#form-button').click(function () {
-        console.log('haha');
         blob = {};
         $('#questiontext').serializeArray().map(function(x){blob[x.name] = x.value;});
         $('#questiontext').val("");

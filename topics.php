@@ -29,6 +29,7 @@ if ($method === 'GET') {
 
     $request_body = file_get_contents('php://input');
     $json = json_decode($request_body);
+    $_POST = json_decode($request_body, true);
     file_put_contents("Activity.log", $_COOKIE['auth_token'], FILE_APPEND);
     file_put_contents("Activity.log", "|", FILE_APPEND);
 
@@ -50,6 +51,7 @@ if ($method === 'GET') {
     }
 
     if (empty($_POST['topic'])) {
+//        echo json_encode($_POST['topic']);
         echo json_encode(array("error"=>$errorTypes[1]));
         exit;
     }
